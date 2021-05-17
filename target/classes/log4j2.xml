@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>        
+		<!-- log SQL with timing information, post execution -->
+	    <logger name="jdbc.sqltiming" level="ERROR" additivity="false">
+	        <appender-ref ref="console" />
+	    </logger>
+	    <logger name="org.springframework" level="ERROR" additivity="false">
+	        <appender-ref ref="console" />
+	    </logger>
+	    <Logger name="java.sql" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.apache.commons" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>        
+        <Logger name="egovframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="egovframework.rte.fdl" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>        
+        <logger name="knlframework" level="DEBUG" additivity="false">
+	        <appender-ref ref="console"/>
+	    </logger>
+	    <logger name="org.mybatis.spring.SqlSessionUtils" level="ERROR" additivity="false">
+	        <appender-ref ref="console"/>
+	    </logger>	    
+	    <logger name="net.sf.jxls.transformer" level="ERROR" additivity="false">
+	        <appender-ref ref="console"/>
+	    </logger>	    
+        <Root level="DEBUG">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="testDAO">
+	<!-- 조회 -->
+	<select id="testDAO.selectTestList" parameterType="testVO" resultType="testVO" flushCache="true">
+		<![CDATA[
+			SELECT * FROM T_TEST ORDER BY TE_ID DESC
+		]]>
+	
+	</select>	
+	<!-- //조회 -->
+	
+	<!--  상세조회 -->
+	<select id="testDAO.selectTestView" parameterType="testVO" resultType="testVO">
+		<![CDATA[
+			SELECT * FROM T_TEST WHERE te_id = #{te_id}
+		]]>
+	</select>
+	<!--  //상세조회 -->
+	
+	<!-- 등록 -->
+	<insert id="testDAO.insertTest" parameterType="testVO" useGeneratedKeys="true">
+		<![CDATA[
+			INSERT INTO T_TEST SET
+			TE_NAME = #{te_name},
+			TE_CONTENT = #{te_content},
+			INSERT_DATE = NOW()
+		]]>
+	</insert>
+	<!--  //등록 -->
+	
+	<!-- 수정 -->
+	<update id="testDAO.updateTest" parameterType="testVO">
+		<![CDATA[
+			UPDATE T_TEST SET
+			TE_NAME = #{te_name},
+			TE_CONTENT = #{te_content},
+			MODIFY_DATE = NOW()
+			WHERE te_id = #{te_id}
+		]]>
+	</update>
+	<!-- //수정 -->
+</mapper>

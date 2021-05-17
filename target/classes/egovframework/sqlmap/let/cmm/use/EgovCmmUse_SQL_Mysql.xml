@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CmmUse">
+
+	
+	<typeAlias  alias="ComDefaultCodeVO" type="egovframework.com.cmm.ComDefaultCodeVO"/>
+
+	<select id="CmmUseDAO.selectCmmCodeDetail" parameterClass="ComDefaultCodeVO" resultClass="ComDefaultCodeVO">
+		<![CDATA[ 
+			SELECT 
+			CODE_ID, CODE, CODE_NM, CODE_DC
+			FROM 
+			LETTCCMMNDETAILCODE
+			WHERE
+			USE_AT = 'Y'
+			AND CODE_ID = #codeId#
+		]]>
+	</select>
+
+    
+
+</sqlMap>            
