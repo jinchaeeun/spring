@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 
+    <typeAliases>
+    	<typeAlias alias="testVO" type="egovframework.test.service.TestVO" />
+    </typeAliases>
+     -->
+ 	
+ 	<!-- 
+	<mappers>
+       <mapper resource="egovframework/sqlmap/mappers/db_mysql/test/Test_SQL_Mysql.xml" />   
+    </mappers> 
+	 -->
+</configuration>
