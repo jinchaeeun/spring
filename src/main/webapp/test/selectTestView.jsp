@@ -17,8 +17,12 @@
 			<td>${searchVO.te_id }</td>
 		</tr>
 		<tr>
-			<td>제목</td>
+			<td>이름</td>
 			<td>${resultVO.te_name }</td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td>${resultVO.te_nick }</td>
 		</tr>		
 		<tr>
 			<td>내용</td>

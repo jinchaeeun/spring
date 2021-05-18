@@ -21,6 +21,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td>닉네임</td>
+				<td>
+					<input type="text" id="te_nick" name="te_nick" value="${resultVO.te_nick}" />
+				</td>
+			</tr>
+			<tr>
 				<td>내용</td>
 				<td>
 					<textarea id="te_content" name="te_content">${resultVO.te_content }</textarea>

@@ -39,6 +39,7 @@ function fn_search(){
 		<tr>
 			<td>ID</td>
 			<td>name</td>
+			<td>nick</td>
 			<td>content</td>
 			<td>date</td>
 		</tr>
@@ -51,6 +52,7 @@ function fn_search(){
 					${result.te_name }
 				</a>
 			</td>
+			<td>${result.te_nick }</td>
 			<td>${result.te_content }</td>
 			<td>${result.insert_date }</td>
 		</tr>
@@ -65,6 +67,7 @@ function fn_search(){
 					${result.te_name }
 				</a>
 			</td>
+			<td>${result.te_nick }</td>
 			<td>${result.te_content }</td>
 			<td>${result.insert_date }</td>
 		</tr>
@@ -84,6 +87,7 @@ function fn_search(){
 					${result.te_name }
 				</a>
 			</td>
+			<td>${result.te_nick }</td>
 			<td>${result.te_content }</td>
 			<td>${result.insert_date }</td>
 		</tr>

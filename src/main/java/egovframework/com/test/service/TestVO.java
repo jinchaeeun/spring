@@ -5,12 +5,20 @@ import egovframework.com.cmm.ComDefaultVO;
 public class TestVO extends ComDefaultVO{
 	private String te_id;
 	private String te_name;
+	private String te_nick;
 	private String te_content;
 	private String insert_date;
 	private String modify_date;
 	private String te_is_notice;
 	private String te_is_best;
 	
+	
+	public String getTe_nick() {
+		return te_nick;
+	}
+	public void setTe_nick(String te_nick) {
+		this.te_nick = te_nick;
+	}
 	public String getTe_is_best() {
 		return te_is_best;
 	}
