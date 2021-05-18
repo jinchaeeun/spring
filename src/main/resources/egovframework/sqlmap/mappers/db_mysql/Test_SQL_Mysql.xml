@@ -4,7 +4,30 @@
 	<!-- 조회 -->
 	<select id="testDAO.selectTestList" parameterType="testVO" resultType="testVO" flushCache="true">
 		<![CDATA[
-			SELECT * FROM T_TEST ORDER BY TE_ID DESC
+			SELECT * FROM T_TEST 
+			WHERE (1)
+		]]> <!-- AND 를 붙이기 위해서 where 1로 함 -->
+		<if test="searchKeyword != null and searchKeyword != ''">
+		    <if test="searchCondition == 'te_name'">
+		    	<![CDATA[
+			    AND TE_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>
+		    <if test="searchCondition == 'te_content'">
+		    	<![CDATA[
+			    AND TE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>
+		    <if test="searchCondition == 'all'">
+		    	<![CDATA[
+			    AND TE_NAME LIKE CONCAT('%', #{searchKeyword}, '%') OR TE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>    
+		</if> <!-- null도 아니고 공백도 아니면 concat로 문자열을 붙여줌-->
+		
+		
+		<![CDATA[	
+			ORDER BY TE_ID DESC
 			LIMIT #{firstIndex}, #{recordCountPerPage}
 		]]>
 	</select>	
@@ -13,7 +36,25 @@
 	<select id="testDAO.selectTestListTotCnt" parameterType="testVO" resultType="int">
 	    <![CDATA[
 			SELECT COUNT(*) AS totcnt FROM T_TEST
+			WHERE (1)
 		]]>
+		<if test="searchKeyword != null and searchKeyword != ''">
+		    <if test="searchCondition == 'te_name'">
+		    	<![CDATA[
+			    AND TE_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>
+		    <if test="searchCondition == 'te_content'">
+		    	<![CDATA[
+			    AND TE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>
+		    <if test="searchCondition == 'all'">
+		    	<![CDATA[
+			    AND TE_NAME LIKE CONCAT('%', #{searchKeyword}, '%') OR TE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+			    ]]>		    
+		    </if>    
+		</if> <!-- null도 아니고 공백도 아니면 concat로 문자열을 붙여줌-->
 	</select>
 	<!-- //개수 조회 -->
 	<!--  상세조회 -->
