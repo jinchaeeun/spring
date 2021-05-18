@@ -34,4 +34,8 @@ public class TestServiceImpl extends EgovAbstractServiceImpl implements TestServ
 	public void update(TestVO testVO, HttpServletRequest req, HttpServletResponse res){
 		testDAO.update(testVO, "testDAO.updateTest");
 	}
+	
+	public void delete(TestVO testVO, HttpServletRequest req, HttpServletResponse res){
+		testDAO.delete(testVO, "testDAO.deleteTest");
+	}
 }

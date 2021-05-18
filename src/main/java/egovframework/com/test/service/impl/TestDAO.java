@@ -25,4 +25,8 @@ public class TestDAO extends MainDAO {
 	public void update(TestVO testVO, String sql_id) {
 		update(sql_id, testVO);
 	}
+	
+	public void delete(TestVO testVO, String sql_id) {
+		delete(sql_id, testVO);
+	}
 }

@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.cmm.ImagePaginationInfo;
+import egovframework.com.cmm.service.CommonService;
 import egovframework.com.test.service.TestService;
 import egovframework.com.test.service.TestVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
 
 @Controller
 @RequestMapping(value = {"/test", "/admin"})
@@ -26,16 +29,43 @@ public class TestController {
 	@Resource(name="testService")
 	TestService testService;
 
+	@Resource(name="commonService")
+	CommonService commonService;
+
+	@Resource(name="propertiesService")
+	EgovPropertyService propertiesService;
+
 	@RequestMapping(value= {"/selectTestList.do", "/selectTest2List.do"})
 	public String selectTestList(
-			@ModelAttribute("searchVO") TestVO serchVO,
+			@ModelAttribute("searchVO") TestVO searchVO,
 			HttpServletRequest req,
 			HttpServletResponse res,
 			ModelMap model
 			) throws Exception {
+		//전체 count
+		int totCnt = commonService.selectListTotCnt(searchVO, req, res, "testDAO.selectTestListTotCnt");
+		//한 페이지 row수
+		//searchVO.setPageUnit(3);
+		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
+		//page 노출갯수
+		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		List<TestVO> resultList = (List<TestVO>)testService.selectList(serchVO, req, res);
+		//페이징 선언
+		ImagePaginationInfo paginationInfo = new ImagePaginationInfo();
+		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
+		paginationInfo.setPageSize(searchVO.getPageSize());
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		//select 할 때 필요한 limit 값 세팅
+		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		List<TestVO> resultList = (List<TestVO>)commonService.selectList(searchVO, req, res, "testDAO.selectTestList");
+
 		model.addAttribute("resultList", resultList);
+		model.addAttribute("paginationInfo", paginationInfo.getPagingHtml("fn_paging")); //html 가져오려면 paginationInfo.getPagingHtml("fn_paging"); //함수명 호출
+		model.addAttribute("totCnt", totCnt);
 
 		return "test/selectTestList";
 	}
@@ -48,23 +78,14 @@ public class TestController {
 			ModelMap model
 			) throws Exception {
 		log.debug("te_id="+searchVO.getTe_id());
-		TestVO resultVO = (TestVO)testService.selectView(searchVO, req, res);
+
+		//TestVO resultVO = (TestVO)testService.selectView(searchVO, req, res);
+		//이렇게 쓰면 DAO 만들 필요 없이 그냥 사용 가능
+		TestVO resultVO = (TestVO)commonService.selectView(searchVO, req, res, "testDAO.selectTestView");
 		model.addAttribute("resultVO", resultVO);
 
 		return "test/selectTestView";
 	}
-
-	//      @RequestMapping(value= {"/insertTestForm.do"})
-	//      public String insertTestForm(
-	//        @ModelAttribute("searchVO") TestVO searchVO,
-	//        HttpServletRequest req,
-	//        HttpServletResponse res,
-	//        ModelMap model
-	//        ) throws Exception {
-	//    	  model.addAttribute("actionUrl", "insertTest.do"); //actionUrl이라는 이름으로 insertTest.do 선언했음
-	//  
-	//    	 return "test/insertTestForm";
-	//      }
 
 	// 글쓰기 
 	@RequestMapping(value= {"/insertTest{path1}.do"})
@@ -92,7 +113,9 @@ public class TestController {
 
 			try {
 				// 데이터 저장
-				String te_id = testService.insert(searchVO, req, res);
+				//String te_id = testService.insert(searchVO, req, res);
+				String te_id = commonService.insert(searchVO, req, res, "testDAO.insertTest");
+
 				model.addAttribute("resultMsg", "저장되었습니다.");
 				model.addAttribute("retrunUrl", "/test/selectTestList.do");
 				//log.debug("insert te_id ::: " + te_id);
@@ -133,18 +156,46 @@ public class TestController {
 			log.debug("te_content ::"+ searchVO.getTe_content());
 
 			try {
-				// 데이터 저장
-				//String te_id = testService.update(searchVO, req, res);
+				//데이터 저장(update)
+				//testService.update(searchVO, req, res);
+				commonService.update(searchVO, req, res, "testDAO.updateTest");
 
-				model.addAttribute("resultMsg", "저장되었습니다.");
-				model.addAttribute("retrunUrl", "/test/selectTestList.do");
-				//log.debug("insert te_id ::: " + te_id);
+				model.addAttribute("resultMsg", "수정되었습니다.");
+				model.addAttribute("returnUrl", "/test/selectTestList.do");
 			}catch(Exception e) {
 				e.printStackTrace();
-				model.addAttribute("resultMsg", "저장에 실패하였습니다..");
+				model.addAttribute("resultMsg", "수정에 실패하였습니다.");
 			}
+
 			//return "redirect:/test/selectTestView.do";
 		}
+		return "common/alert";
+	}
+
+	@RequestMapping(value= {"/deleteTest.do"})
+	public String deleteTestForm(
+			@ModelAttribute("searchVO") TestVO searchVO,
+			HttpServletRequest req,
+			HttpServletResponse res,
+			ModelMap model
+			) throws Exception {
+
+		//deleteTest.do 호출(삭제처리페이지)
+		log.debug("삭제처리페이지호출 :: deleteTest.do");
+		log.debug("te_id :: " + searchVO.getTe_id());
+
+		try {
+			//데이터 삭제(delete)
+			//testService.delete(searchVO, req, res);
+			commonService.delete(searchVO, req, res, "testDAO.deleteTest");
+
+			model.addAttribute("resultMsg", "삭제되었습니다.");
+			model.addAttribute("returnUrl", "/test/selectTestList.do");
+		}catch(Exception e) {
+			e.printStackTrace();
+			model.addAttribute("resultMsg", "삭제에 실패하였습니다.");
+		}
+
 		return "common/alert";
 	}
 }

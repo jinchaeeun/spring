@@ -11,4 +11,5 @@ public interface TestService {
 	public TestVO selectView(TestVO testVO, HttpServletRequest req, HttpServletResponse res) throws Exception;
 	public String insert(TestVO testVO, HttpServletRequest req, HttpServletResponse res) throws Exception;
 	public void update(TestVO testVO, HttpServletRequest req, HttpServletResponse res) throws Exception;
+	public void delete(TestVO testVO, HttpServletRequest req, HttpServletResponse res) throws Exception;
 }

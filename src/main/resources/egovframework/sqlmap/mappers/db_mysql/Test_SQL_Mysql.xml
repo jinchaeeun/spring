@@ -5,11 +5,17 @@
 	<select id="testDAO.selectTestList" parameterType="testVO" resultType="testVO" flushCache="true">
 		<![CDATA[
 			SELECT * FROM T_TEST ORDER BY TE_ID DESC
+			LIMIT #{firstIndex}, #{recordCountPerPage}
 		]]>
-	
 	</select>	
 	<!-- //조회 -->
-	
+	<!-- 개수 조회 -->
+	<select id="testDAO.selectTestListTotCnt" parameterType="testVO" resultType="int">
+	    <![CDATA[
+			SELECT COUNT(*) AS totcnt FROM T_TEST
+		]]>
+	</select>
+	<!-- //개수 조회 -->
 	<!--  상세조회 -->
 	<select id="testDAO.selectTestView" parameterType="testVO" resultType="testVO">
 		<![CDATA[
@@ -40,4 +46,15 @@
 		]]>
 	</update>
 	<!-- //수정 -->
+	
+	<!-- 삭제 -->
+	<delete id="testDAO.deleteTest" parameterType="testVO">
+	    <![CDATA[
+	    	DELETE FROM T_TEST
+	    	WHERE TE_ID = #{te_id}
+	    ]]>
+	</delete>
+	<!-- //삭제 -->
+	
+
 </mapper>

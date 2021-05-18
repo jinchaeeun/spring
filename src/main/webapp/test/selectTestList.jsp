@@ -11,6 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form method="get" id="searchForm" name="searchForm" action="">
+	<input type="text" id="searchKeyword" name="searchKeyword" value="${searchVO.searchKeyword }" />
+		<input type="button" value="검색" onclick="fn_search();return false;" />
+</form>
 	<table border="1">
 		<tr>
 			<td>ID</td>
@@ -21,7 +25,13 @@
 		
 		<c:forEach var="result" items="${resultList}" varStatus="status">
 		<tr>
-			<td>${status.index }</td>
+		<!--
+		번호를 뿌리려면 
+		전체 갯수 - ((현재 페이지 -1) * row수) - status.index
+		1페이지 일 때 : 14- ((1-1)*10) - (id: 0~9)
+		2페이지 일 때 : 14- ((2-1)*10) - (id: 0~9) 
+		 --> 
+			<td>${totCnt - ((searchVO.pageIndex - 1) * searchVO.pageUnit) - status.index }</td>
 			<td>
 				<a href="selectTestView.do?te_id=${result.te_id }">
 					${result.te_name }
@@ -40,7 +50,19 @@
 	</table>
 	
 	<div>
+		<ul>
+			${paginationInfo }
+		</ul>
+	</div>
+	
+	<div>
 		<a href="insertTestForm.do">글쓰기</a>
 	</div>
 </body>
 </html>
+
+<script>
+function fn_paging(pageIndex){
+	location.href="selectTestList.do?pageIndex="+pageIndex+"&aa=1";
+}
+</script>
