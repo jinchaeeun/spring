@@ -42,6 +42,33 @@ function fn_search(){
 			<td>content</td>
 			<td>date</td>
 		</tr>
+		<!-- 공지 id 설정 -->
+		<c:forEach var="result" items="${noticeList}" varStatus="status">
+		<tr>
+		 <td>공지</td>
+			<td>
+				<a href="selectTestView.do?te_id=${result.te_id }">
+					${result.te_name }
+				</a>
+			</td>
+			<td>${result.te_content }</td>
+			<td>${result.insert_date }</td>
+		</tr>
+		</c:forEach>
+		
+		<!-- 인기글 id 설정 -->
+		<c:forEach var="result" items="${bestList}" varStatus="status">
+		<tr>
+		 <td>인기</td>
+			<td>
+				<a href="selectTestView.do?te_id=${result.te_id }">
+					${result.te_name }
+				</a>
+			</td>
+			<td>${result.te_content }</td>
+			<td>${result.insert_date }</td>
+		</tr>
+		</c:forEach>
 		
 		<c:forEach var="result" items="${resultList}" varStatus="status">
 		<tr>

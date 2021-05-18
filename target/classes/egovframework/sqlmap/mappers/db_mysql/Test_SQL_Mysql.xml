@@ -7,6 +7,7 @@
 			SELECT * FROM T_TEST 
 			WHERE (1)
 		]]> <!-- AND 를 붙이기 위해서 where 1로 함 -->
+		
 		<if test="searchKeyword != null and searchKeyword != ''">
 		    <if test="searchCondition == 'te_name'">
 		    	<![CDATA[
@@ -32,6 +33,29 @@
 		]]>
 	</select>	
 	<!-- //조회 -->
+	
+	<!-- 공지 상단 조회 -->
+	<select id="testDAO.selectTestNoticeList" parameterType="testVO" resultType="testVO" flushCache="true">
+		<![CDATA[
+			SELECT * FROM T_TEST 
+			WHERE (1)
+			AND TE_IS_NOTICE ='1'
+			ORDER BY TE_ID DESC
+		]]>
+	</select>	
+	<!-- //공지 상단 조회 -->
+	
+	<!-- 인기글 조회 -->
+	<select id="testDAO.selectTestBestList" parameterType="testVO" resultType="testVO" flushCache="true">
+		<![CDATA[
+			SELECT * FROM T_TEST 
+			WHERE (1)
+			AND te_is_best ='1'
+			ORDER BY TE_ID DESC
+		]]>
+	</select>	
+	<!-- //인기글 조회 -->
+	
 	<!-- 개수 조회 -->
 	<select id="testDAO.selectTestListTotCnt" parameterType="testVO" resultType="int">
 	    <![CDATA[
@@ -71,6 +95,8 @@
 			INSERT INTO T_TEST SET
 			TE_NAME = #{te_name},
 			TE_CONTENT = #{te_content},
+			TE_IS_NOTICE = #{te_is_notice},
+			TE_IS_BEST = #{te_is_best},
 			INSERT_DATE = NOW()
 		]]>
 	</insert>
@@ -82,6 +108,8 @@
 			UPDATE T_TEST SET
 			TE_NAME = #{te_name},
 			TE_CONTENT = #{te_content},
+			TE_IS_NOTICE = #{te_is_notice},
+			TE_IS_BEST = #{te_is_best},
 			MODIFY_DATE = NOW()
 			WHERE te_id = #{te_id}
 		]]>

@@ -8,7 +8,21 @@ public class TestVO extends ComDefaultVO{
 	private String te_content;
 	private String insert_date;
 	private String modify_date;
+	private String te_is_notice;
+	private String te_is_best;
 	
+	public String getTe_is_best() {
+		return te_is_best;
+	}
+	public void setTe_is_best(String te_is_best) {
+		this.te_is_best = te_is_best;
+	}
+	public String getTe_is_notice() {
+		return te_is_notice;
+	}
+	public void setTe_is_notice(String te_is_notice) {
+		this.te_is_notice = te_is_notice;
+	}
 	public String getTe_id() {
 		return te_id;
 	}

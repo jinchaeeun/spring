@@ -26,6 +26,20 @@
 					<textarea id="te_content" name="te_content">${resultVO.te_content }</textarea>
 				</td>
 			</tr>
+			<tr>
+				<td>공지사항</td>
+				<td>
+					<input type="checkbox" id="te_is_notice" name="te_is_notice" value="1"<c:if test="${resultVO.te_is_notice eq '1'}"> checked='checked' </c:if>/>
+					<label for="te_is_notice">체크 시 공지사항으로 등록</label>
+				</td>
+			</tr>
+			<tr>
+				<td>인기글</td>
+				<td>
+					<input type="checkbox" id="te_is_best" name="te_is_best" value="1"<c:if test="${resultVO.te_is_best eq '1'}"> checked='checked' </c:if>/>
+					<label for="te_is_best">체크 시 인기글로 등록</label>
+				</td>
+			</tr>
 		</table>
 		<div>
 			<a href="#none;" onclick="history.back();return false;">뒤로가기</a>
