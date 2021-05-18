@@ -11,8 +11,21 @@ public class TestVO extends ComDefaultVO{
 	private String modify_date;
 	private String te_is_notice;
 	private String te_is_best;
+	private String te_is_check;
+	private String te_ids[];
 	
-	
+	public String[] getTe_ids() {
+		return te_ids;
+	}
+	public void setTe_ids(String[] te_ids) {
+		this.te_ids = te_ids;
+	}
+	public String getTe_is_check() {
+		return te_is_check;
+	}
+	public void setTe_is_check(String te_is_check) {
+		this.te_is_check = te_is_check;
+	}
 	public String getTe_nick() {
 		return te_nick;
 	}

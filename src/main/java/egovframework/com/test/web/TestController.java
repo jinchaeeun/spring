@@ -63,12 +63,11 @@ public class TestController {
 
 		List<TestVO> resultList = (List<TestVO>)commonService.selectList(searchVO, req, res, "testDAO.selectTestList");
 		List<TestVO> noticeList = (List<TestVO>)commonService.selectList(searchVO, req, res, "testDAO.selectTestNoticeList");
-		//인기글 체크 시
-		List<TestVO> bestList = (List<TestVO>)commonService.selectList(searchVO, req, res, "testDAO.selectTestBestList");
-
+		
+		log.debug("te_is_best :: " + searchVO.getTe_is_best());
+		
 		model.addAttribute("resultList", resultList);
 		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("bestList", bestList);
 		model.addAttribute("paginationInfo", paginationInfo.getPagingHtml("fn_paging")); //html 가져오려면 paginationInfo.getPagingHtml("fn_paging"); //함수명 호출
 		model.addAttribute("totCnt", totCnt);
 
@@ -202,6 +201,40 @@ public class TestController {
 				commonService.delete(searchVO, req, res, "testDAO.deleteTest");
 				
 				model.addAttribute("resultMsg", "삭제되었습니다.");
+				model.addAttribute("returnUrl", "/test/selectTestList.do");
+			}catch(Exception e) {
+				e.printStackTrace();
+				model.addAttribute("resultMsg", "삭제에 실패하였습니다.");
+			}
+
+			return "common/alert";
+	}
+	
+	@RequestMapping(value = {"/deleteTestAll.do"})
+	public String deleteTestAll(
+			@ModelAttribute("searchVO") TestVO searchVO,
+			HttpServletRequest req,
+			HttpServletResponse res,
+			ModelMap model
+			) throws Exception {
+		
+			//deleteTest.do 호출(삭제처리페이지)
+			log.debug("선택삭제처리페이지호출 :: deleteTestAll.do");
+
+			log.debug("test :: " + req.getParameter("te_ids"));
+
+			
+			try {
+				//데이터 삭제(delete)
+				if(searchVO.getTe_ids() != null) {
+					for(int i = 0; i < searchVO.getTe_ids().length; i++) {
+						//log.debug("te_id ::: " + searchVO.getTe_ids()[i]);
+						searchVO.setTe_id(searchVO.getTe_ids()[i]);
+						commonService.delete(searchVO, req, res, "testDAO.deleteTest");
+					}
+				}
+				
+				model.addAttribute("resultMsg", "선택된 데이터가 삭제되었습니다.");
 				model.addAttribute("returnUrl", "/test/selectTestList.do");
 			}catch(Exception e) {
 				e.printStackTrace();
