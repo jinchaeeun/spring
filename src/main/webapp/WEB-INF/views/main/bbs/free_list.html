@@ -1,0 +1,72 @@
+<!-- 상단 헤더 불러오기 -->
+<?php include('../sub_header.php'); ?>
+
+<div class="snb-wrap">
+	<div>
+		<ul>
+			<li><a href="./notice_list.html"><span>공지사항</span></a></li>
+			<li class="on"><a href="./free_list.html"><span>자유게시판</span></a></li>
+			<li><a href="./gallery_list.html"><span>갤러리</span></a></li>
+		</ul>
+	</div>
+</div>
+
+<style>
+
+</style>
+<div class="notice-wrap">
+	<div class="notice-box">
+		<div class="search-box">
+			<input type="text">
+			<button>검색</button>
+		</div>
+
+		<ul class="table-hd">
+			<li> <!--table-->
+				<div class="no">번호</div> <!-- table-cell -->
+				<div class="title">제목</div>
+				<div class="name">글쓴이</div>
+				<div class="date">등록일</div>
+			</li>
+		</ul>
+
+		<ul class="table-bd">
+			<li>
+				<div class="no">3</div>
+				<div class="title"><a href="../bbs/notice_view.html">크리넥스는 환경을 보호합니다.</a></div>
+				<div class="name">크리넥스</div>
+				<div class="date">2017.04.03</div>
+			</li>
+			<li>
+				<div class="no">2</div>
+				<div class="title"><a href="../bbs/notice_view.html">숲은 마음의 고향입니다</a></div>
+				<div class="name">유한</div>
+				<div class="date">2017.04.03</div>
+			</li>
+			<li>
+				<div class="no">1</div>
+				<div class="title"><a href="../bbs/notice_view.html">숲은 마음의 고향입니다</a></div>
+				<div class="name">유한</div>
+				<div class="date">2017.04.03</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="paging">
+		<ul>
+			<li><a href="#none">처음으로</a></li>
+			<li><a href="#none">이전</a></li>
+			<li class="on"><a href="#none">1</a></li>
+			<li><a href="#none">2</a></li>
+			<li><a href="#none">3</a></li>
+			<li><a href="#none">다음</a></li>
+			<li><a href="#none">마지막</a></li>
+		</ul>
+	</div>
+
+	<div class="table-btn">
+		<a href="../bbs/free_write.html">글쓰기</a>
+	</div>
+</div>
+<!-- 하단 헤더 불러오기 -->
+<?php include('../sub_footer.php'); ?>

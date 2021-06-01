@@ -1,0 +1,67 @@
+<!-- 상단 헤더 불러오기 -->
+<?php include('../sub_header.php'); ?>
+
+
+<style>
+	/*갤러리 글쓰기*/
+	.notice-box {max-width: 880px; margin: 0 auto; }
+
+	.bbs-write{max-width: 1200px; margin: 0 auto;}
+	.bbs-write > div{margin-bottom: 15px;}
+
+	.bbs-write li label{color: #666; margin-bottom: 5px; display: block;} 
+	.bbs-write li input[type="text"]{ border: 1px solid #ccc; width: 100%; height: 30px; padding: 5px;}
+	.bbs-write li textarea{width: 100%; height: 40px; padding: 5px; border: 1px solid #ccc; }
+
+	.bbs-write li.checkbox-wrap{background: #fff; padding: 10px; }
+	.bbs-write li.checkbox-wrap label{display: inline-block;}
+
+</style>
+<div class="snb-wrap">
+	<div>
+		<ul>
+			<li><a href="./notice_list.html"><span>공지사항</span></a></li>
+			<li><a href="./free_list.html"><span>자유게시판</span></a></li>
+			<li class="on"><a href="./gallery_list.html"><span>갤러리</span></a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="notice-wrap">
+	<div class="notice-box">
+		<h1>갤러리 글쓰기</h1>
+		<div class="bbs-write">
+			<ul>
+				<li>
+					<label for="">제목</label>
+					<input type="text" placeholder="제목을 입력해주세요.">
+				</li>
+				<li>
+					<label for="">내용</label>
+					<textarea name="" id=""></textarea>
+				</li>
+				<li class="attachment">
+					<label for="">첨부파일 #01</label>
+					<input type="file">
+				</li>
+				<li class="attachment">
+					<label for="">첨부파일 #02</label>
+					<input type="file">
+				</li>
+				<li class="checkbox-wrap">
+					<label for="">공지 선택 &nbsp</label>
+					<input type="checkbox" id="chk-notice">
+					<label for="chk-notice" class="check-txt"> &nbsp선택 시 공지사항</label>
+				</li>
+
+			</ul>
+		</div>
+		<div class="table-btn">
+			<a href="../bbs/gallery_list.html">이전</a>
+			<a href="../bbs/gallery_list.html">저장</a>
+		</div>
+	</div>
+</div>
+
+<!-- 하단 헤더 불러오기 -->
+<?php include('../sub_footer.php'); ?>

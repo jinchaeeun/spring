@@ -1,0 +1,141 @@
+.header .gnb {
+    width: 100%;
+    clear: both;
+}
+
+.header .gnb > ul > li {
+    margin: 0;
+    width: 25%;
+}
+
+.header .gnb > ul > li > a {
+    font-size: 13px;
+    text-align: center;
+}
+
+.main-visual h2 {
+    font-size: 30px;
+    padding-top: 150px;
+}
+
+.main-visual p {
+    font-size: 16px;
+}
+
+.main-visual {
+    height: 374px;
+    background-position: 81% 100%;
+}
+
+.numbers-wrap {
+    padding: 50px 0;
+}
+
+.numbers h2 {
+    font-size: 29px;
+}
+
+.numbers p {
+    font-size: 17px;
+}
+
+.numbers ul li {
+    width: 42%;
+    margin: 10px 7px;
+}
+
+.numbers ul li p {
+    font-size: 11px;
+}
+
+.numbers ul li p i {
+    font-size: 10px;
+    font-style: normal;
+}
+
+.slide-banner .swiper-container {
+    margin: 24px auto 89px auto;
+}
+
+.slide-banner .swiper-slide img {
+    width: 100%;
+    height: 110px;
+}
+
+.m-g-box {
+    padding: 64px 0 40px 0;
+}
+.m-g-box h2 {
+    font-size: 33px;
+    color: #fffaea;
+}
+
+.main-gallery {
+    margin: 28px auto;
+}
+
+.main-gallery li {
+    width: 100%;
+	padding: 36px 18px 5px 18px;
+}
+
+.notice-wrap {
+	padding: 0 10px;
+}
+
+
+.gallery-box ul li:nth-child(3n+1) {
+    clear: unset;
+}
+.gallery-box ul li:nth-child(2n+1) {
+    clear: both;
+}
+
+.gallery-box li {
+    width: 50%;
+    padding: 5px;
+}
+
+.section01-box h2 {
+    font-size: 26px;
+}
+
+
+.join-box {
+    width: 370px;
+    margin: 30px auto;
+}
+
+.button {
+    width: 100px;
+}
+
+.join-box a {
+    margin: 0 6px;
+}
+
+.section01-box {
+    padding-top: 110px;
+}
+
+.section01-box p {
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 0 113px;
+}
+
+#section0 {
+    background-position: center 110px;
+}
+
+
+/*스크롤 시 헤더에서 이상현상 해결 위해 처음부터 고정해버림 이후 바디에 헤더 높이만큼 여백을 줌*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+body{ padding-top: 110px;}

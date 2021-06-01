@@ -28,7 +28,7 @@ public class TestController {
 
 	@Resource(name="testService")
 	TestService testService;
-
+	
 	@Resource(name="commonService")
 	CommonService commonService;
 
