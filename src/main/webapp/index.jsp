@@ -8,5 +8,6 @@
 </head>
 <body>aaaa
 
+<jsp:forward page="index.do"></jsp:forward>
 </body>
 </html>

@@ -5,10 +5,12 @@
 
     <typeAliases>
     	<typeAlias alias="testVO" type="egovframework.com.test.service.TestVO" />
+    	<typeAlias alias="memberVO" type = "hustar.member.service.MemberVO" />
     </typeAliases>
  
 	<mappers>
-       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Test_SQL_Mysql.xml" />   
+       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Test_SQL_Mysql.xml" />
+       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Member_SQL_Mysql.xml" />   
     </mappers> 
 
 </configuration>
