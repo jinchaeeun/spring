@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 상단 헤더 불러오기 -->
- <jsp:include page="./header.jsp"></jsp:include>
+ <jsp:include page="../header.jsp"></jsp:include>
 
 	<div class="contents">
 		<!--내용 출력-->
@@ -233,4 +234,4 @@ url('https://media.nationalgeographic.org/assets/photos/186/480/0e077d4d-9209-40
 		</div>
 	</div>
 <!-- 하단 헤더 불러오기 -->
- <jsp:include page="./footer.jsp"></jsp:include>
+ <jsp:include page="../footer.jsp"></jsp:include>
