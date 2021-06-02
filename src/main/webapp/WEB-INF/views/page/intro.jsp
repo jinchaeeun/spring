@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 상단 헤더 불러오기 -->
- <jsp:include page="../sub_header.jsp"></jsp:include>
+<%@ include file="/WEB-INF/views/inc/header.jsp"%>
+
+<body>
+	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
 
 <div id="fullpage">
 	<div class="section " id="section0">
@@ -42,5 +45,5 @@
 	//achors 스크롤마다 페이지 뒤에 #하고 이름이 붙음. url로 이용할 수도 있다.
 </script>
 
-<!-- 하단 헤더 불러오기 -->
- <jsp:include page="../sub_footer.jsp"></jsp:include>
+	<!-- 하단 헤더 불러오기 -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>

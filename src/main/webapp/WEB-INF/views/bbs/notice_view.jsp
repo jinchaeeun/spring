@@ -2,8 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 상단 헤더 불러오기 -->
-<jsp:include page="../sub_header.jsp"></jsp:include>
+<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
+<body>
+	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
 <div class="snb-wrap">
 	<div>
 		<ul>
@@ -42,5 +44,5 @@
 </div>
 <!--contents 끝-->
 
-<!-- 하단 헤더 불러오기 -->
- <jsp:include page="../sub_footer.jsp"></jsp:include>
+	<!-- 하단 헤더 불러오기 -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
