@@ -38,6 +38,6 @@ public class MemberController extends ComDefaultVO{
 		
 		
 		commonService.insert(memberVO, null, null, "memberDAO.insertMember");
-		return "/member/join";
+		return "redirect:/member/join.do"; //forward도 가능. redirect는 클라이언트가 다시 요청, forward는 요청 다음에 서버 내에서 처리 후에 넘어간 다음에 
 	}
 }
