@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,7 +33,6 @@ public class MemberController extends ComDefaultVO{
 	@RequestMapping("/member/join.do")
 	public String join(HttpServletRequest request,
 			Model model) throws Exception {
-		
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if(inputFlashMap != null) {
 			model.addAttribute("msg", inputFlashMap.get("msg"));
@@ -62,6 +62,10 @@ public class MemberController extends ComDefaultVO{
 		if(cnt>0) {
 			redirectAttributes.addFlashAttribute("msg", "이미 가입된 아이디입니다.");
 		}else {
+			//패스워드 암호화
+			String encpass = BCrypt.hashpw(memberVO.getPassword(), BCrypt.gensalt()); //(데이터를 가지고 와서, gensalt 암호화)
+			memberVO.setPassword(encpass);											  //데이터베이스에 넣을 수 있게 암호화한 값 다시 전달
+			//데이터 삽입
 			commonService.insert(memberVO, null, null, "memberDAO.insertMember");
 			redirectAttributes.addFlashAttribute("msg", "회원가입 성공");
 		}

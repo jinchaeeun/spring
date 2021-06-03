@@ -19,7 +19,7 @@
 			<input type="password" name="password" placeholder="비밀번호">
 			
 			<span>비밀번호 확인</span>
-			<input type="password"  placeholder="비밀번호 확인">
+			<input type="password" name="password2" placeholder="비밀번호 확인">
 			
 			<span>이름</span>
 			<input type="text" name="name" placeholder="이름">
@@ -56,7 +56,7 @@
 		
 		<div class="button">
 			<a href="<c:url value='/index.do'/>">이전</a>
-			<a href="#" onclick="document.frm.submit();">가입완료</a>
+			<a href="#" onclick="submitForm();">가입완료</a>
 		</div>
 	</form>
 	</div>
@@ -88,6 +88,31 @@ function checkId(){
 		}
 		
 	})
+	
+}
+
+function submitForm(){
+	if(document.frm.id.value == ""){
+		alert('ID를 입력해주세요.');
+		document.frm.id.focus();
+	}else if(document.frm.password.value == ""){
+		alert('비밀번호를 입력해주세요.');
+		document.frm.password.focus();
+	}else if(document.frm.password2.value == ""){
+		alert('비밀번호 확인을 입력해주세요.');
+		document.frm.password2.focus();
+	}else if(document.frm.password.value != document.frm.password2.value){
+		alert('입력하신 비밀번호가 같지 않습니다.');
+		document.frm.password2.focus();
+	}else if(document.frm.name.value == ""){
+		alert('이름을 입력해주세요.');
+		document.frm.name.focus();
+	}else if(document.frm.phone.value == ""){
+		alert('연락처를 입력해주세요.');
+		document.frm.phone.focus();
+	}else{
+		document.frm.submit();
+	}
 	
 }
 </script>
