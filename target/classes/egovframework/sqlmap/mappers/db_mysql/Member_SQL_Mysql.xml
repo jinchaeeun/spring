@@ -24,4 +24,14 @@
 	    ]]>
 	</select>
 	<!-- //ID 중복 체크 -->
+	
+	<!-- 로그인 체크 -->
+	<select id="memberDAO.selectMemberView" parameterType="memberVO" resultType="memberVO">
+	    <![CDATA[
+	    SELECT * 
+	    FROM MEMBER
+		WHERE id = #{id}
+	    ]]>
+	</select>
+	<!-- //로그인  체크 -->
 </mapper>

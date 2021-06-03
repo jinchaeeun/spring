@@ -88,4 +88,21 @@ public class MemberController extends ComDefaultVO{
 		
 		return new ModelAndView(jsonView);
 	}
+	
+	@RequestMapping("/member/actionLogin.do")
+	public String actionLogin(@ModelAttribute("memberVO") MemberVO memberVO) throws Exception{
+		MemberVO loginVO = (MemberVO) commonService.selectView(memberVO, null, null, "memberDAO.selectMemberView");
+		if(loginVO != null) {
+			if (BCrypt.checkpw(memberVO.getPassword(), loginVO.getPassword()) == true){
+				return "redirect:/index.do";
+			}else {
+				// 비밀번호 불일치
+			} 
+		}else {
+			// ID 존재하지 않음
+		} 
+		
+		return "redirect:/member/login.do";
+	}
+	
 }
