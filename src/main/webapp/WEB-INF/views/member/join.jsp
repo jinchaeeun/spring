@@ -13,7 +13,7 @@
     <form method="post" name="frm" action="<c:url value='/member/joinInsert.do'/>">
 		<div class="join">
 			<span>아이디</span>
-			<input type="text" name="id" placeholder="아이디">
+			<input type="text" name="id" placeholder="아이디"><a href="javascript:checkId();">중복확인</a>
 			
 			<span>비밀번호</span>
 			<input type="password" name="password" placeholder="비밀번호">
@@ -65,6 +65,30 @@
 var msg = '<c:out value="${msg}"/>';
 if (msg != ''){
 	alert(msg);
+}
+
+function checkId(){
+	var id = document.frm.id.value;
+	
+	$.ajax({
+		type: "POST",
+		url: "<c:url value='/member/checkId.do'/>",
+		dataType: "JSON",
+		data: {"id": id},
+		success : function(data){
+			console.log(data);
+			if(data.duplicate == true){
+				alert("이미 가입된 ID입니다.");
+			}else{
+				alert("가입 가능한 ID입니다.");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+		}
+		
+	})
+	
 }
 </script>
 	<!-- 하단 헤더 불러오기 -->

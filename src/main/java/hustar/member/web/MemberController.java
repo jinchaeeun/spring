@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.service.CommonService;
@@ -21,6 +24,10 @@ public class MemberController extends ComDefaultVO{
 	
 	@Resource(name="commonService") 
 	CommonService commonService; //어노테이션으로 주면 new 안해도 객체 생성까지 된다.
+	
+	@Resource(name="jsonView")
+	MappingJackson2JsonView jsonView;
+	
 	
 	@RequestMapping("/member/join.do")
 	public String join(HttpServletRequest request,
@@ -59,5 +66,22 @@ public class MemberController extends ComDefaultVO{
 			redirectAttributes.addFlashAttribute("msg", "회원가입 성공");
 		}
 		return "redirect:/member/join.do"; //forward도 가능. redirect는 클라이언트가 다시 요청, forward는 요청 다음에 서버 내에서 처리 후에 넘어간 다음에 
+	}
+	
+	@RequestMapping("/member/checkId.do")
+	public ModelAndView checkId(ModelMap model, @ModelAttribute("memberVO") MemberVO memberVO, 
+			RedirectAttributes redirectAttributes) throws Exception{
+		
+		int cnt = commonService.selectListTotCnt(memberVO, null, null, "memberDAO.selectMemberCnt");
+		System.out.println("cnt = " + cnt);
+		
+		if(cnt>0) {
+			model.addAttribute("duplicate", true);
+		}else {
+			model.addAttribute("duplicate", false);
+		}
+		
+		
+		return new ModelAndView(jsonView);
 	}
 }

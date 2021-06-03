@@ -44,5 +44,10 @@
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
     
     <mvc:annotation-driven/>
-
+    
+    <!-- Ajax Json View Start -->
+    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" id="jsonView">
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+	<!-- Ajax Json View End -->
 </beans>
