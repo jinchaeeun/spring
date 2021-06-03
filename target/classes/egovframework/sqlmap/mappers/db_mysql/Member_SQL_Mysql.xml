@@ -14,4 +14,14 @@
 	    ]]>
 	</insert>
 	<!-- //가입 -->
+	
+	<!-- ID 중복 체크 -->
+	<select id="memberDAO.selectMemberCnt" parameterType="memberVO" resultType="int">
+	    <![CDATA[
+	    SELECT COUNT(*) 
+	    FROM MEMBER
+		WHERE id = #{id}
+	    ]]>
+	</select>
+	<!-- //ID 중복 체크 -->
 </mapper>

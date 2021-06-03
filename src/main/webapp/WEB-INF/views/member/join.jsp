@@ -61,5 +61,11 @@
 	</form>
 	</div>
 
+<script>
+var msg = '<c:out value="${msg}"/>';
+if (msg != ''){
+	alert(msg);
+}
+</script>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
