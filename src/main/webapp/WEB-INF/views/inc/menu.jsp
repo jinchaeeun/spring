@@ -18,7 +18,8 @@
 		<div class="tnb">
 			<ul class="tnb">
 				<!--tnb-->
-				<li>aaaa<a href="<c:url value='/member/login.do'/>"><c:out value="${session.name}"/>로그인</a></li>
+				<li><a href="#"><c:out value="${session.name}"/></a></li>
+				<li><a href="<c:url value='/member/login.do'/>">로그인</a></li>
 				<li><a href="<c:url value='/member/join.do'/>">회원가입</a></li>
 				<!-- 					
 				<li><a href="#none">로그아웃</a></li>
