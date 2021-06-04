@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -122,5 +124,37 @@ public class MemberController extends ComDefaultVO{
 		
 		return "redirect:/member/login.do";
 	}
+
 	
+	@RequestMapping("/member/actionLogout.do")
+	public String actionLogout() throws Exception{
+		RequestAttributes requestAttribute = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		requestAttribute.setAttribute("login", null, RequestAttributes.SCOPE_SESSION);
+		
+		return "redirect:/member/login.do";
+	}
+	
+	@RequestMapping("/member/actionLoginAsync.do")
+	public ModelAndView actionLoginAsync(ModelMap model, String id, String password) throws Exception{ //memberVO안쓰고 직접 id,pw받아옴
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(id);
+		memberVO.setPassword(password);
+		
+		MemberVO loginVO = (MemberVO) commonService.selectView(memberVO, null, null, "memberDAO.selectMemberView");
+		
+		if(loginVO != null) {
+			if(BCrypt.checkpw(memberVO.getPassword(), loginVO.getPassword())==true) {
+				HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+				request.getSession().setAttribute("login", loginVO);
+				
+				model.addAttribute("login", true);
+			} else {
+				model.addAttribute("login", false);
+			}
+		} else {
+			model.addAttribute("login", false);
+		}
+		
+		return new ModelAndView(jsonView);
+	}
 }

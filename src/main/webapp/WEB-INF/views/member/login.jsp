@@ -13,7 +13,7 @@
 		<div class="login">
 			<input type="text" name="id" placeholder="아이디">
 			<input type="password" name="password" placeholder="비밀번호">
-			<button type="button" onclick="actionLogin();">로그인</button>
+			<button type="button" onclick="actionLoginAsync();">로그인</button>
 		</div>
 		<a href="<c:url value='/member/join.do'/>">회원가입</a>
 	</form>
@@ -36,6 +36,37 @@ if (msg != ''){
 		} else{
 			frm.submit();
 		}
+	}
+	
+	function actionLoginAsync(){
+		var id = document.frm.id.value;
+		var password = document.frm.password.value;
+		
+		console.log("id = " + id + ", password = " + password);
+		
+		//join.jsp의 checkID()를 참고하여 ajax로 로그인 처리
+		//성공하면 href.location = '<c:out value="index.do"/>';
+		//실패하면 alert('로그인에 실패하였습니다.');
+		
+		$.ajax({
+			type: "POST",
+			url: "<c:url value='/member/actionLoginAsync.do'/>",
+			dataType: "JSON",
+			data: {"id": id, "password": password},
+			success : function(data){
+				console.log(data);
+				if(data.login == true){
+					location.href = "<c:url value='/index.do'/>";
+				}else{
+					alert('로그인에 실패하였습니다.');
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+			}
+			
+		})
+		
 	}
 </script>
 	<!-- 하단 헤더 불러오기 -->
