@@ -19,7 +19,14 @@
 			<ul class="tnb">
 				<!--tnb-->
 				<li><a href="#"><c:out value="${session.name}"/></a></li>
-				<li><a href="<c:url value='/member/login.do'/>">로그인</a></li>
+				<!-- 로그인이 된 경우 -->
+				<c:if test="${not empty session}">
+					<li><a href="<c:url value='/member/login.do'/>">로그아웃</a></li>
+				</c:if>
+				<!-- 로그인이 안된 경우 -->
+				<c:if test="${empty session}">
+					<li><a href="<c:url value='/member/login.do'/>">로그인</a></li>
+				</c:if>
 				<li><a href="<c:url value='/member/join.do'/>">회원가입</a></li>
 				<!-- 					
 				<li><a href="#none">로그아웃</a></li>
