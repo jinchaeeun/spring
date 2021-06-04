@@ -19,6 +19,12 @@
 	</form>
 </div>
 <script>
+
+var msg = '<c:out value="${msg}"/>';
+if (msg != ''){
+	alert(msg);
+}
+
 	function actionLogin(){
 		var frm =document.frm;
 		if(frm.id.value == ""){

@@ -3,6 +3,8 @@ package hustar.member.web;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.Servlet;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -42,7 +46,13 @@ public class MemberController extends ComDefaultVO{
 	}
 	
 	@RequestMapping("/member/login.do")
-	public String login() throws Exception {
+	public String login(HttpServletRequest request,
+			Model model) throws Exception {
+		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+		if(inputFlashMap != null) {
+			model.addAttribute("msg", inputFlashMap.get("msg"));
+			System.out.println("msg = " + inputFlashMap.get("msg"));
+		}
 		return "/member/login";
 	}
 	
@@ -94,8 +104,12 @@ public class MemberController extends ComDefaultVO{
 			@ModelAttribute("memberVO") MemberVO memberVO, 
 			RedirectAttributes redirectAttributes) throws Exception{
 		MemberVO loginVO = (MemberVO) commonService.selectView(memberVO, null, null, "memberDAO.selectMemberView");
+		
 		if(loginVO != null) {
 			if (BCrypt.checkpw(memberVO.getPassword(), loginVO.getPassword()) == true){
+				//로그인세션
+				HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+				request.getSession().setAttribute("login", loginVO);
 				return "redirect:/index.do";
 			}else {
 				// 비밀번호 불일치

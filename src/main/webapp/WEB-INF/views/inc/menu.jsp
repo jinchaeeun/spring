@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:set var="session" value="${sessionScope.login}" scope="application"/>
+
 <!-- 콘텐츠 시작 -->
 <div class="header">
 	<!--로고, 메뉴-->
@@ -16,7 +18,7 @@
 		<div class="tnb">
 			<ul class="tnb">
 				<!--tnb-->
-				<li><a href="<c:url value='/member/login.do'/>">로그인</a></li>
+				<li>aaaa<a href="<c:url value='/member/login.do'/>"><c:out value="${session.name}"/>로그인</a></li>
 				<li><a href="<c:url value='/member/join.do'/>">회원가입</a></li>
 				<!-- 					
 				<li><a href="#none">로그아웃</a></li>
