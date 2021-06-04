@@ -90,16 +90,20 @@ public class MemberController extends ComDefaultVO{
 	}
 	
 	@RequestMapping("/member/actionLogin.do")
-	public String actionLogin(@ModelAttribute("memberVO") MemberVO memberVO) throws Exception{
+	public String actionLogin(
+			@ModelAttribute("memberVO") MemberVO memberVO, 
+			RedirectAttributes redirectAttributes) throws Exception{
 		MemberVO loginVO = (MemberVO) commonService.selectView(memberVO, null, null, "memberDAO.selectMemberView");
 		if(loginVO != null) {
 			if (BCrypt.checkpw(memberVO.getPassword(), loginVO.getPassword()) == true){
 				return "redirect:/index.do";
 			}else {
 				// 비밀번호 불일치
+				redirectAttributes.addFlashAttribute("msg", "비밀번호가 맞지 않습니다.");
 			} 
 		}else {
 			// ID 존재하지 않음
+			redirectAttributes.addFlashAttribute("msg", "존재하지않는 ID입니다.");
 		} 
 		
 		return "redirect:/member/login.do";
