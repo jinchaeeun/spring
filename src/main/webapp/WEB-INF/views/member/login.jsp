@@ -13,7 +13,7 @@
 		<div class="login">
 			<input type="text" name="id" placeholder="아이디">
 			<input type="password" name="password" placeholder="비밀번호">
-			<button type="button" onclick="actionLoginAsync();">로그인</button>
+			<button type="button" onclick="actionLogin();">로그인</button>
 		</div>
 		<a href="<c:url value='/member/join.do'/>">회원가입</a>
 	</form>
