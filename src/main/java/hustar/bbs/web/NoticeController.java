@@ -23,6 +23,9 @@ public class NoticeController {
 	@RequestMapping("/bbs/notice_list.do")
 	public String notice_list(Model model, NoticeVO searchVO) throws Exception {
 		
+		//검색 값 가져오는 지 확인
+		System.out.println("searchKeyword = " + searchVO.getSearchKeyword());
+		
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getRecordCountPerPage()); 	//한 페이지 당 몇개 표시
@@ -39,6 +42,7 @@ public class NoticeController {
 		
 		model.addAttribute("noticeVOList", noticeVOList);
 		model.addAttribute("paginationInfo", paginationInfo); //notice_list에서 하단 페이지 번호 뿌려줄 수 있게 추가 
+		model.addAttribute("searchVO", searchVO);
 		
 		return "/bbs/notice_list";
 	}

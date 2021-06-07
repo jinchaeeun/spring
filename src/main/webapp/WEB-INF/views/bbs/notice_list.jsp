@@ -22,11 +22,12 @@
 <style>
 
 </style>
+<form method="get" name="frm" action="<c:url value='/bbs/notice_list.do'/>">
 <div class="notice-wrap">
 	<div class="notice-box">
 		<div class="search-box">
-			<input type="text">
-			<button>검색</button>
+			<input type="text" name="searchKeyword" value="${searchVO.searchKeyword}"> <!-- value를 줘서 값을 유지하면서 넘어가게  -->
+			<button onclick="javascript:fn_requestList(1);">검색</button>
 		</div>
 
 		<ul class="table-hd">
@@ -53,7 +54,8 @@
 	
 	<div class="paging">
 		<ul>
-			<ui:pagination paginationInfo="${paginationInfo}" type="myImage"/>
+			<ui:pagination paginationInfo="${paginationInfo}" type="myImage" jsFunction="fn_requestList"/>
+			<input type="hidden" name="pageIndex" value="<c:url value='${searchVO.pageIndex}'/>"/>
 		</ul>
 	</div>
 
@@ -61,5 +63,14 @@
 		<a href="<c:url value='/bbs/notice_write.do'/>">글쓰기</a>
 	</div>
 </div>
+</form>
+
+<script>
+	function fn_requestList(pageNo){
+		console.log(pageNo);
+		document.frm.pageIndex.value = pageNo;
+		document.frm.submit();
+	}
+</script>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>

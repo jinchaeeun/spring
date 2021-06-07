@@ -6,6 +6,7 @@
 	    <![CDATA[
 	    SELECT * 
 	    FROM NOTICE
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%')
 	    ORDER BY DATE DESC, SUBJECT DESC
 	    LIMIT ${recordCountPerPage} OFFSET ${firstIndex}
 	    ]]>
@@ -17,6 +18,7 @@
 	    <![CDATA[
 	    SELECT COUNT(*) 
 	    FROM NOTICE
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%')
 	    ]]>
 	</select>
 	<!-- //공지사항 목록 갯수-->
