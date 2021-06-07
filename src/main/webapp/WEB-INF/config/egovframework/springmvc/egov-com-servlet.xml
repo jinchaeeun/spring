@@ -50,4 +50,17 @@
         <property name="contentType" value="text/html;charset=UTF-8"/>
     </bean>
 	<!-- Ajax Json View End -->
+	
+	<!-- 페이징 이미지 -->
+	<bean class="egovframework.com.cmm.ImagePaginationRenderer" id="imageRenderer"/>
+	<bean class="egovframework.com.cmm.MyImagePaginationRenderer" id="myImageRenderer"/>
+	
+	<bean class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager" id="paginationManager">
+	    <property name="rendererType">
+	        <map>
+	            <entry key="image" value-ref="imageRenderer"/>
+	            <entry key="myImage" value-ref="myImageRenderer"/> 
+	        </map>
+	    </property>
+    </bean>
 </beans>

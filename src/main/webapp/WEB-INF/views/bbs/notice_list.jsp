@@ -41,7 +41,7 @@
 		<c:forEach var="noticeVO" items="${noticeVOList}" varStatus="status"> <!-- varStatus는 현재 몇개 값인지 -->
 			<ul class="table-bd">
 				<li>
-					<div class="no"><c:out value="${status.index}"/></div>
+					<div class="no"><c:out value="${paginationInfo.totalRecordCount - ((paginationInfo.currentPageNo-1) * paginationInfo.recordCountPerPage + status.index)}"/></div>
 					<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>"><c:out value="${noticeVO.subject}"/></a></div>
 					<div class="name"><c:out value="${noticeVO.writer}"/></div>
 					<div class="date"><c:out value="${noticeVO.date}"/></div>
@@ -53,19 +53,7 @@
 	
 	<div class="paging">
 		<ul>
-			<ui:pagination paginationInfo="${paginationInfo}" type="image"/>
-		</ul>
-	</div>
-	
-	<div class="paging">
-		<ul>
-			<li><a href="#none">처음으로</a></li>
-			<li><a href="#none">이전</a></li>
-			<li class="on"><a href="#none">1</a></li>
-			<li><a href="#none">2</a></li>
-			<li><a href="#none">3</a></li>
-			<li><a href="#none">다음</a></li>
-			<li><a href="#none">마지막</a></li>
+			<ui:pagination paginationInfo="${paginationInfo}" type="myImage"/>
 		</ul>
 	</div>
 

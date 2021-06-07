@@ -6,6 +6,7 @@
 	    <![CDATA[
 	    SELECT * 
 	    FROM NOTICE
+	    ORDER BY DATE DESC, SUBJECT DESC
 	    LIMIT ${recordCountPerPage} OFFSET ${firstIndex}
 	    ]]>
 	</select>

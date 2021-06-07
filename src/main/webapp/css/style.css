@@ -150,7 +150,7 @@ img {
 	.paging{margin: 20px 0;}
 	.paging ul{text-align: center;}
 	.paging ul li{display: inline-block; margin: 5px 0px;}
-	.paging ul li a{display: block; padding: 5px 10px; border: 1px solid black; color:black; background: white;}
+	.paging ul li a{display: block; padding: 7px 12px; border: 1px solid black; color:black; background: white; margin: 0 2px;}
 	.paging ul li.on a{background: #5b593f; color: white; border: 1px solid #000;}
 	
 	.table-btn{text-align: right; margin: 10px auto;}
