@@ -34,7 +34,7 @@ if (msg != ''){
 			alert('비밀번호가 비어있습니다.');
 			frm.password.focus();
 		} else{
-			frm.submit();
+			actionLoginAsync();
 		}
 	}
 	

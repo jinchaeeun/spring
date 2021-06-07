@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
     
 <!-- 상단 헤더 불러오기 -->
 <%@ include file="/WEB-INF/views/inc/header.jsp"%>
@@ -36,29 +37,26 @@
 				<div class="date">등록일</div>
 			</li>
 		</ul>
+		<!-- 반복 뿌림 부분 -->
+		<c:forEach var="noticeVO" items="${noticeVOList}" varStatus="status"> <!-- varStatus는 현재 몇개 값인지 -->
+			<ul class="table-bd">
+				<li>
+					<div class="no"><c:out value="${status.index}"/></div>
+					<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>"><c:out value="${noticeVO.subject}"/></a></div>
+					<div class="name"><c:out value="${noticeVO.writer}"/></div>
+					<div class="date"><c:out value="${noticeVO.date}"/></div>
+				</li>
+			</ul>
+		</c:forEach>
 
-		<ul class="table-bd">
-			<li>
-				<div class="no">3</div>
-				<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>">크리넥스는 환경을 보호합니다.</a></div>
-				<div class="name">크리넥스</div>
-				<div class="date">2017.04.03</div>
-			</li>
-			<li>
-				<div class="no">2</div>
-				<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>">숲은 마음의 고향입니다</a></div>
-				<div class="name">유한</div>
-				<div class="date">2017.04.03</div>
-			</li>
-			<li>
-				<div class="no">1</div>
-				<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>">숲은 마음의 고향입니다</a></div>
-				<div class="name">유한</div>
-				<div class="date">2017.04.03</div>
-			</li>
+	</div>
+	
+	<div class="paging">
+		<ul>
+			<ui:pagination paginationInfo="${paginationInfo}" type="image"/>
 		</ul>
 	</div>
-
+	
 	<div class="paging">
 		<ul>
 			<li><a href="#none">처음으로</a></li>
