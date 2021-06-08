@@ -8,7 +8,7 @@
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
 	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
 
-<form method="POST" name="frm" action="<c:url value='/bbs/notice_write_action.do'/>">
+<form method="POST" name="frm" action="<c:url value='/bbs/notice_write_action.do'/>" enctype="multipart/form-data"> 
 <c:if test="${mode =='modify'}">
 	<input type="hidden" name="seq" value="${noticeVO.seq}">	
 </c:if>
@@ -29,7 +29,7 @@
 					</li>
 					<li class="attachment">
 						<label for="">첨부파일 #01</label>
-						<input type="file">
+						<input type="file" name="uploadFile">
 					</li>
 					<!-- 
 					<li class="attachment">

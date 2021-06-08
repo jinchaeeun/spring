@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.com.cmm.service.CommonService;
+import egovframework.com.cmm.util.EgovProperties;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import hustar.bbs.service.NoticeVO;
 import hustar.member.service.MemberVO;
+import hustar.page.util.FileUtil;
 
 @Controller
 public class NoticeController {	
+	private static final String NOTICE_UPLOAD_PATH = EgovProperties.getProperty("Globals.fileStorePath") + "notice";
 	
 	@Resource(name="commonService") 
 	CommonService commonService;
@@ -78,7 +82,13 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/bbs/notice_write_action.do")
-	public String notice_write_action(NoticeVO noticeVO, HttpSession session, String mode, RedirectAttributes redirectAttributes) throws Exception {
+	public String notice_write_action(
+			NoticeVO noticeVO, 
+			HttpSession session, 
+			String mode, 
+			RedirectAttributes redirectAttributes,
+			MultipartFile uploadFile) throws Exception {
+		
 		System.out.println("subject => " + noticeVO.getSubject());
 		System.out.println("contents => " + noticeVO.getContents());
 		
@@ -92,6 +102,11 @@ public class NoticeController {
 		}
 		
 		noticeVO.setWriter(loginVO.getName());	//멤버VO의 name을 작성자로 넣어주기
+		//첨부파일
+		String filename = FileUtil.saveFile(uploadFile, NOTICE_UPLOAD_PATH);
+		if(filename != null) {
+			
+		}
 		
 		// mode: write, modify
 		if("write".equals(mode)) {
