@@ -3,15 +3,20 @@ package hustar.bbs.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import egovframework.com.cmm.service.CommonService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import hustar.bbs.service.NoticeVO;
+import hustar.member.service.MemberVO;
 
 @Controller
 public class NoticeController {	
@@ -55,4 +60,25 @@ public class NoticeController {
 		model.addAttribute("noticeVO", noticeVO);
 		return "/bbs/notice_view"; //뷰 반환
 	}
+	
+	@RequestMapping("/bbs/notice_write.do")
+	public String notice_write() throws Exception {
+		
+		return "/bbs/notice_write"; //뷰 반환
+	}
+
+	@RequestMapping("/bbs/notice_write_action.do")
+	public String notice_write_action(NoticeVO noticeVO, HttpSession session) throws Exception {
+		System.out.println("subject => " + noticeVO.getSubject());
+		System.out.println("contents => " + noticeVO.getContents());
+		
+		//현재 로그인한 사람 정보 - 세션
+		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
+		noticeVO.setWriter(loginVO.getName());	//멤버VO의 name을 작성자로 넣어주기
+		
+		//받은 데이터 삽입
+		commonService.insert(noticeVO, null, null, "noticeDAO.insertNotice");
+		
+		return "redirect:/bbs/notice_list.do";	//같은 값 계속 안들어가게 하기위해 redirect로
+	}	
 }

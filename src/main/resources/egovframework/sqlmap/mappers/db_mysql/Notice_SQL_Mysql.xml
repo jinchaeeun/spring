@@ -22,6 +22,7 @@
 	    ]]>
 	</select>
 	<!-- //공지사항 목록 갯수-->
+	
 	<!-- 공지사항 상세-->
 	<select id="noticeDAO.selectNoticeView" parameterType="noticeVO" resultType="noticeVO">
 	    <!-- 특수문자 치환, 안해주면 찾기 힘들어서 -->
@@ -31,4 +32,15 @@
 	    ]]>
 	</select>
 	<!-- //공지사항 상세-->
+	
+	<!-- 공지사항 글쓰기-->
+	<insert id="noticeDAO.insertNotice" parameterType="noticeVO">
+	    <![CDATA[
+	    INSERT INTO NOTICE
+	    (SUBJECT, WRITER, DATE, CONTENTS)
+	    VALUES
+	    (#{subject}, #{writer}, NOW(), #{contents}) 
+	    ]]>
+	</insert>
+	<!-- //공지사항 글쓰기-->
 </mapper>
