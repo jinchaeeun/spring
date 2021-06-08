@@ -9,9 +9,11 @@
 	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
 
 <form method="POST" name="frm" action="<c:url value='/bbs/notice_write_action.do'/>">
-<input type="hidden" name="seq" value="${noticeVO.seq}">
-
+<c:if test="${mode =='modify'}">
+	<input type="hidden" name="seq" value="${noticeVO.seq}">	
+</c:if>
 <input type="hidden" name="mode" value="${mode}">
+
 	<div class="notice-wrap">
 		<div class="notice-box">
 			<h1>공지사항 글쓰기</h1>

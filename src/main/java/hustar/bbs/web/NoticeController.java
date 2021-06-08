@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.com.cmm.service.CommonService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -62,18 +63,34 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/bbs/notice_write.do")
-	public String notice_write( Model model) throws Exception {
+	public String notice_write( Model model, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+		//새 글쓰기 상태 - write, 수정은 modify
 		model.addAttribute("mode", "write");
+		
+		//로그아웃 상태에서 글쓰기 저장 버튼 누르면
+		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
+		if(loginVO == null) {
+			redirectAttributes.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/member/login.do";
+		}
+		
 		return "/bbs/notice_write"; //뷰 반환
 	}
 
 	@RequestMapping("/bbs/notice_write_action.do")
-	public String notice_write_action(NoticeVO noticeVO, HttpSession session, String mode) throws Exception {
+	public String notice_write_action(NoticeVO noticeVO, HttpSession session, String mode, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("subject => " + noticeVO.getSubject());
 		System.out.println("contents => " + noticeVO.getContents());
 		
 		//현재 로그인한 사람 정보 - 세션
 		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
+		
+		//로그아웃 상태에서 글쓰기 저장 버튼 누르면
+		if(loginVO == null) {
+			redirectAttributes.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/member/login.do";
+		}
+		
 		noticeVO.setWriter(loginVO.getName());	//멤버VO의 name을 작성자로 넣어주기
 		
 		// mode: write, modify
