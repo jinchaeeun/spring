@@ -37,9 +37,9 @@
 	<insert id="noticeDAO.insertNotice" parameterType="noticeVO">
 	    <![CDATA[
 	    INSERT INTO NOTICE
-	    (SUBJECT, WRITER, DATE, CONTENTS)
+	    (SUBJECT, WRITER, DATE, CONTENTS, FILENAME, ORIFILENAME)
 	    VALUES
-	    (#{subject}, #{writer}, NOW(), #{contents}) 
+	    (#{subject}, #{writer}, NOW(), #{contents}, #{filename}, #{oriFilename}) 
 	    ]]>
 	</insert>
 	<!-- //공지사항 글쓰기-->

@@ -8,6 +8,8 @@ public class NoticeVO extends ComDefaultVO {
 	public String writer;
 	public String date;
 	public String contents;
+	public String filename;
+	public String oriFilename;
 	
 	//단축키 Alt+shift+s -> Generate Getters and Setters 클릭
 	public int getSeq() {
@@ -48,6 +50,22 @@ public class NoticeVO extends ComDefaultVO {
 	
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getOriFilename() {
+		return oriFilename;
+	}
+
+	public void setOriFilename(String oriFilename) {
+		this.oriFilename = oriFilename;
 	}
 	
 

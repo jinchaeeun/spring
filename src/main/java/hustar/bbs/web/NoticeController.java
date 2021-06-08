@@ -105,7 +105,10 @@ public class NoticeController {
 		//첨부파일
 		String filename = FileUtil.saveFile(uploadFile, NOTICE_UPLOAD_PATH);
 		if(filename != null) {
+			noticeVO.setFilename(filename);
 			
+			String oriFilename = filename.split("_")[1];
+			noticeVO.setOriFilename(oriFilename);
 		}
 		
 		// mode: write, modify
