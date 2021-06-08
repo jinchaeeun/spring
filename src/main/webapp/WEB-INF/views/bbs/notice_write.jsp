@@ -31,10 +31,12 @@
 						<label for="">첨부파일 #01</label>
 						<input type="file">
 					</li>
+					<!-- 
 					<li class="attachment">
 						<label for="">첨부파일 #02</label>
 						<input type="file">
 					</li>
+					 -->
 					<li class="checkbox-wrap">
 						<label for="">공지 선택 &nbsp</label>
 						<input type="checkbox" id="chk-notice">

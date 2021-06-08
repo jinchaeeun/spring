@@ -54,4 +54,14 @@
 	    <![CDATA[ WHERE SEQ = #{seq} ]]>
 	</update>
 	<!-- //공지사항 글 수정하기 -->
+	
+	<!-- 공지사항 글 삭제하기 -->
+	<delete id="noticeDAO.deleteNotice" parameterType="noticeVO">
+	    <![CDATA[
+	    DELETE FROM NOTICE
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</delete>
+	<!-- //공지사항 글 삭제하기 -->
+	
 </mapper>

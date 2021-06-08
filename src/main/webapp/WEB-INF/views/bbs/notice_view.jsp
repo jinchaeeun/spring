@@ -28,7 +28,7 @@
 				</div>
 				<div class="table-btn">
 					<a href="<c:url value='/bbs/notice_modify.do'/>?seq=${noticeVO.seq}" class="mod">수정</a>
-					<a href="" class="del">삭제</a>
+					<a href="#" class="del" onclick="javascript:confirmDelete();">삭제</a>
 					<a href="<c:url value='/bbs/notice_list.do'/>">목록으로</a>
 				</div>
 			</div>
@@ -38,3 +38,11 @@
 
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	
+<script>
+	function confirmDelete(){
+		if(confirm('삭제하시겠습니까?')==true){
+			location.href = '<c:url value="/bbs/notice_delete.do"/>?seq=${noticeVO.seq}';
+		}
+	}
+</script>

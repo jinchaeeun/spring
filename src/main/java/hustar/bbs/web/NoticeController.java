@@ -117,4 +117,12 @@ public class NoticeController {
 		model.addAttribute("mode", "modify");
 		return "/bbs/notice_write";	//이제 notice_write에 받은 값 뿌려주기
 	}
+	
+	@RequestMapping("/bbs/notice_delete.do")
+	public String notice_delete(NoticeVO noticeVO) throws Exception{
+		System.out.println("seq = " + noticeVO.getSeq());
+		
+		commonService.delete(noticeVO, null, null, "noticeDAO.deleteNotice");
+		return "redirect:/bbs/notice_list.do";
+	}
 }
