@@ -62,13 +62,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/bbs/notice_write.do")
-	public String notice_write() throws Exception {
-		
+	public String notice_write( Model model) throws Exception {
+		model.addAttribute("mode", "write");
 		return "/bbs/notice_write"; //뷰 반환
 	}
 
 	@RequestMapping("/bbs/notice_write_action.do")
-	public String notice_write_action(NoticeVO noticeVO, HttpSession session) throws Exception {
+	public String notice_write_action(NoticeVO noticeVO, HttpSession session, String mode) throws Exception {
 		System.out.println("subject => " + noticeVO.getSubject());
 		System.out.println("contents => " + noticeVO.getContents());
 		
@@ -76,9 +76,28 @@ public class NoticeController {
 		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
 		noticeVO.setWriter(loginVO.getName());	//멤버VO의 name을 작성자로 넣어주기
 		
-		//받은 데이터 삽입
-		commonService.insert(noticeVO, null, null, "noticeDAO.insertNotice");
-		
+		// mode: write, modify
+		if("write".equals(mode)) {
+			//if(mode.equals("write")) 적으면 null일 때 문제가 생김
+			//받은 데이터 삽입
+			commonService.insert(noticeVO, null, null, "noticeDAO.insertNotice");
+			
+		} else {
+			//update
+			commonService.update(noticeVO, null, null, "noticeDAO.updateNotice");
+		}
+			
 		return "redirect:/bbs/notice_list.do";	//같은 값 계속 안들어가게 하기위해 redirect로
 	}	
+	
+	@RequestMapping("/bbs/notice_modify.do")
+	public String notice_modify(NoticeVO searchVO, Model model) throws Exception{
+		
+		NoticeVO noticeVO = (NoticeVO) commonService.selectView(searchVO, null, null, "noticeDAO.selectNoticeView");
+		//noticeVO 넘겨주기 위한 모델
+		model.addAttribute("noticeVO", noticeVO);
+		//data update -> write_action
+		model.addAttribute("mode", "modify");
+		return "/bbs/notice_write";	//이제 notice_write에 받은 값 뿌려주기
+	}
 }

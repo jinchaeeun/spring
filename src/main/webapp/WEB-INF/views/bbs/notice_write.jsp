@@ -9,6 +9,9 @@
 	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
 
 <form method="POST" name="frm" action="<c:url value='/bbs/notice_write_action.do'/>">
+<input type="hidden" name="seq" value="${noticeVO.seq}">
+
+<input type="hidden" name="mode" value="${mode}">
 	<div class="notice-wrap">
 		<div class="notice-box">
 			<h1>공지사항 글쓰기</h1>
@@ -16,11 +19,11 @@
 				<ul>
 					<li>
 						<label for="">제목</label>
-						<input type="text" name="subject" placeholder="제목을 입력해주세요.">
+						<input type="text" name="subject" value="<c:out value='${noticeVO.subject}'/>" placeholder="제목을 입력해주세요.">
 					</li>
 					<li>
 						<label for="">내용</label>
-						<textarea name="contents" id="" placeholder="내용을 입력해주세요."></textarea>
+						<textarea name="contents" id="" placeholder="내용을 입력해주세요."><c:out value='${noticeVO.contents}'/></textarea>
 					</li>
 					<li class="attachment">
 						<label for="">첨부파일 #01</label>

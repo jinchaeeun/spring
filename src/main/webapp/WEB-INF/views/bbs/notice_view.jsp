@@ -18,7 +18,7 @@
 						<span>글쓴이: <b><c:out value='${noticeVO.writer}'/></b></span>
 					</div>
 					<div class="view-cont">
-						<pre><c:out value='${noticeVO.contents}'/></pre>
+						<c:out value='${noticeVO.contents}'/>
 					</div>
 					
 					<div class="view-file">
@@ -27,9 +27,9 @@
 					</div>
 				</div>
 				<div class="table-btn">
-					<a href="<c:url value='/bbs/notice_list.do'/>">목록으로</a>
+					<a href="<c:url value='/bbs/notice_modify.do'/>?seq=${noticeVO.seq}" class="mod">수정</a>
 					<a href="" class="del">삭제</a>
-					<a href="" class="mod">수정</a>
+					<a href="<c:url value='/bbs/notice_list.do'/>">목록으로</a>
 				</div>
 			</div>
 	  </div>

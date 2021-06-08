@@ -43,4 +43,15 @@
 	    ]]>
 	</insert>
 	<!-- //공지사항 글쓰기-->
+	
+	<!-- 공지사항 글 수정하기 -->
+	<update id="noticeDAO.updateNotice" parameterType="noticeVO">
+	    UPDATE NOTICE 
+	    <trim prefix="SET" suffixOverrides=","> <!-- 끝날 때 자동으로 , 제거 처리 -->
+		    <if test="subject != null">SUBJECT=#{subject},</if> 
+		    <if test="contents != null">CONTENTS=#{contents},</if>
+	    </trim>
+	    WHERE SEQ = #{seq}
+	</update>
+	<!-- //공지사항 글 수정하기 -->
 </mapper>
