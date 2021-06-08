@@ -50,6 +50,8 @@
 	    <trim prefix="SET" suffixOverrides=","> <!-- 끝날 때 자동으로 , 제거 처리 -->
 		    <if test="subject != null"> <![CDATA[SUBJECT=#{subject},]]></if> 
 		    <if test="contents != null"> <![CDATA[CONTENTS=#{contents},]]></if>
+		    <if test="filename != null"> <![CDATA[FILENAME = #{filename},]]></if>
+		    <if test="oriFilename != null"> <![CDATA[ORIFILENAME = #{oriFilename},]]></if>
 	    </trim>
 	    <![CDATA[ WHERE SEQ = #{seq} ]]>
 	</update>

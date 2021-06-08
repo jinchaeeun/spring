@@ -27,10 +27,17 @@
 						<label for="">내용</label>
 						<textarea name="contents" id="" placeholder="내용을 입력해주세요."><c:out value='${noticeVO.contents}'/></textarea>
 					</li>
+					<c:if test="${empty noticeVO.filename}">
 					<li class="attachment">
 						<label for="">첨부파일 #01</label>
 						<input type="file" name="uploadFile">
 					</li>
+					</c:if>
+					<c:if test="${not empty noticeVO.filename}">
+					<li>
+						<label for="">${noticeVO.oriFilename} <a href="#" onclick="javascript:confirmDeleteFile();">[삭제]</a></label>
+					</li>
+					</c:if>
 					<!-- 
 					<li class="attachment">
 						<label for="">첨부파일 #02</label>
@@ -54,3 +61,29 @@
 </form>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	
+	<script>
+	function confirmDeleteFile(){
+		if(confirm('삭제하시겠습니까?') == true){
+			//ajax로 처리하기
+			$.ajax({
+				type: 'POST',
+				url: '<c:url value="/bbs/notice_deleteFile.do"/>',
+				dataType: 'JSON',
+				data: {"seq": ${noticeVO.seq}},
+				success: function(data){
+					if(data.success == "true"){
+						location.reload("/bbs/notice_deleteFile.do");
+					}else{
+						alert('파일 삭제에 실패하였습니다.');
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log(textStatus);
+				}
+				
+			});
+			
+		}
+	}
+	</script>

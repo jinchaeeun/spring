@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.com.cmm.service.CommonService;
 import egovframework.com.cmm.util.EgovProperties;
@@ -30,6 +32,9 @@ public class NoticeController {
 	@Resource(name="commonService") 
 	CommonService commonService;
 
+	@Resource(name="jsonView")
+	MappingJackson2JsonView jsonView;
+	
 	
 	@RequestMapping("/bbs/notice_list.do")
 	public String notice_list(Model model, NoticeVO searchVO) throws Exception {
@@ -109,7 +114,7 @@ public class NoticeController {
 			noticeVO.setFilename(filename);
 			//arr[]=filename.split("_")
 			//arr[0] = ""
-			String oriFilename = filename.split("+")[1];	//구분기호 잘라주기
+			String oriFilename = filename.split("_")[1];	//구분기호 잘라주rl
 			noticeVO.setOriFilename(oriFilename);
 		}
 		
@@ -161,6 +166,28 @@ public class NoticeController {
 		String filePath = NOTICE_UPLOAD_PATH + "/" + noticeVO.getFilename(); //실제경로
 		
 		FileUtil.downFile(request, response, filePath, noticeVO.getOriFilename());
+	}
+	
+	@RequestMapping("/bbs/notice_deleteFile.do")
+	public ModelAndView notice_deleteFile(NoticeVO searchVO, Model model) throws Exception{
+		
+		NoticeVO fileVO = (NoticeVO) commonService.selectView(searchVO, null, null, "noticeDAO.selectNoticeView");
+		
+		String filePath = NOTICE_UPLOAD_PATH + "/" + fileVO.getFilename();
+		
+		if(FileUtil.deleteFile(filePath) == true) {
+			NoticeVO noticeVO = new NoticeVO();
+			noticeVO.setSeq(searchVO.getSeq());
+			noticeVO.setFilename("");
+			noticeVO.setOriFilename("");
+			commonService.update(noticeVO, null, null, "noticeDAO.updateNotice");
+			
+			model.addAttribute("success", "true");
+		} else {
+			model.addAttribute("success", "false");
+		}
+		return new ModelAndView(jsonView);
+		
 	}
 	
 }
