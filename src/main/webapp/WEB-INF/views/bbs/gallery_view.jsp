@@ -6,15 +6,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
-<div class="snb-wrap">
-	<div>
-		<ul>
-			<li><a href="<c:url value='/bbs/notice_list.do'/>"><span>공지사항</span></a></li>
-			<li><a href="<c:url value='/bbs/free_list.do'/>"><span>자유게시판</span></a></li>
-			<li class="on"><a href="<c:url value='/bbs/gallery_list.do'/>"><span>갤러리</span></a></li>
-		</ul>
-	</div>
-</div>
+	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
 <div class="contents">
 
   <div class="notice-wrap">

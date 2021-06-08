@@ -47,4 +47,12 @@ public class NoticeController {
 		return "/bbs/notice_list";
 	}
 	
+	@RequestMapping("/bbs/notice_view.do")
+	public String notice_view(NoticeVO searchVO, Model model) throws Exception {
+		
+		NoticeVO noticeVO = (NoticeVO) commonService.selectView(searchVO, null, null, "noticeDAO.selectNoticeView");
+		
+		model.addAttribute("noticeVO", noticeVO);
+		return "/bbs/notice_view"; //뷰 반환
+	}
 }

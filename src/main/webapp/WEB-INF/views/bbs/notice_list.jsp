@@ -33,7 +33,7 @@
 		<ul class="table-hd">
 			<li> <!--table-->
 				<div class="no">번호</div> <!-- table-cell -->
-				<div class="title">제목</div>
+				<div class="subject">제목</div>
 				<div class="name">글쓴이</div>
 				<div class="date">등록일</div>
 			</li>
@@ -43,7 +43,7 @@
 			<ul class="table-bd">
 				<li>
 					<div class="no"><c:out value="${paginationInfo.totalRecordCount - ((paginationInfo.currentPageNo-1) * paginationInfo.recordCountPerPage + status.index)}"/></div>
-					<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>"><c:out value="${noticeVO.subject}"/></a></div>
+					<div class="subject"><a href="<c:url value='/bbs/notice_view.do'/>?seq=${noticeVO.seq}"><c:out value="${noticeVO.subject}"/></a></div>
 					<div class="name"><c:out value="${noticeVO.writer}"/></div>
 					<div class="date"><c:out value="${noticeVO.date}"/></div>
 				</li>

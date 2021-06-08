@@ -6,7 +6,7 @@
 	    <![CDATA[
 	    SELECT * 
 	    FROM NOTICE
-	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%')
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%') OR WRITER LIKE CONCAT('%', #{searchKeyword},'%')
 	    ORDER BY DATE DESC, SUBJECT DESC
 	    LIMIT ${recordCountPerPage} OFFSET ${firstIndex}
 	    ]]>
@@ -18,8 +18,17 @@
 	    <![CDATA[
 	    SELECT COUNT(*) 
 	    FROM NOTICE
-	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%')
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%') OR WRITER LIKE CONCAT('%', #{searchKeyword},'%')
 	    ]]>
 	</select>
 	<!-- //공지사항 목록 갯수-->
+	<!-- 공지사항 상세-->
+	<select id="noticeDAO.selectNoticeView" parameterType="noticeVO" resultType="noticeVO">
+	    <!-- 특수문자 치환, 안해주면 찾기 힘들어서 -->
+	    <![CDATA[
+	    SELECT * FROM NOTICE
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</select>
+	<!-- //공지사항 상세-->
 </mapper>
