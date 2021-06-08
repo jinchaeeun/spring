@@ -25,8 +25,8 @@ public class FileUtil {
 		}
 		
 	    // 파일 이름 변경
-	    UUID uuid = UUID.randomUUID();
-	    String filename = uuid + "_" + file.getOriginalFilename();	//파일이 많아지면 이름이 중복될 수 있으니 랜덤으로 생성한 값을 앞에 붙여준다.
+	    UUID uuid = UUID.randomUUID();	//-도 나오니 제외하고 구분 기호를 주기.
+	    String filename = uuid + "+" + file.getOriginalFilename();	//파일이 많아지면 이름이 중복될 수 있으니 랜덤으로 생성한 값을 앞에 붙여준다.
 
 	    // 저장할 File 객체를 생성(껍데기 파일)ㄴ
 	    File saveFile = new File(path, filename); // 저장할 폴더 이름, 저장할 파일 이름

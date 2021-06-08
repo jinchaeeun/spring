@@ -22,8 +22,10 @@
 					</div>
 					
 					<div class="view-file">
+						<a href="<c:url value='/bbs/notice_downloadFile.do'/>?seq=${noticeVO.seq}"><i class="fa fa-download" aria-hidden="true"></i>${noticeVO.oriFilename}</a>
+						<!-- 
 						<a href=""><i class="fa fa-download" aria-hidden="true"></i> 첨부파일명.jpg</a>
-						<a href=""><i class="fa fa-download" aria-hidden="true"></i> 첨부파일명.jpg</a>
+						 -->
 					</div>
 				</div>
 				<div class="table-btn">

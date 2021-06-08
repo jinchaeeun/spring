@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -102,12 +103,13 @@ public class NoticeController {
 		}
 		
 		noticeVO.setWriter(loginVO.getName());	//멤버VO의 name을 작성자로 넣어주기
-		//첨부파일
+		//첨부파일 ex)uuid_원래 파일명, 원래파일명을 보여주기 위해 _ 분리
 		String filename = FileUtil.saveFile(uploadFile, NOTICE_UPLOAD_PATH);
 		if(filename != null) {
 			noticeVO.setFilename(filename);
-			
-			String oriFilename = filename.split("_")[1];
+			//arr[]=filename.split("_")
+			//arr[0] = ""
+			String oriFilename = filename.split("+")[1];	//구분기호 잘라주기
 			noticeVO.setOriFilename(oriFilename);
 		}
 		
@@ -143,4 +145,22 @@ public class NoticeController {
 		commonService.delete(noticeVO, null, null, "noticeDAO.deleteNotice");
 		return "redirect:/bbs/notice_list.do";
 	}
+	
+	@RequestMapping("/bbs/notice_downloadFile.do")
+	public void notice_downloadFile(
+			NoticeVO searchVO,
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		NoticeVO noticeVO = (NoticeVO) commonService.selectView(searchVO, null, null, "noticeDAO.selectNoticeView");
+		//file 저장여부
+		String filename = noticeVO.getFilename();
+		if(filename == null) {
+			return;
+		}
+		
+		String filePath = NOTICE_UPLOAD_PATH + "/" + noticeVO.getFilename(); //실제경로
+		
+		FileUtil.downFile(request, response, filePath, noticeVO.getOriFilename());
+	}
+	
 }
