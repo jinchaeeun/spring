@@ -7,8 +7,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
-
-
+	<%@ include file="/WEB-INF/views/bbs/gallery_submenu.jsp"%>
 <style>
 	/*갤러리 글쓰기*/
 	.notice-box {max-width: 880px; margin: 0 auto; }
@@ -24,8 +23,6 @@
 	.bbs-write li.checkbox-wrap label{display: inline-block;}
 
 </style>
-<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
-
 <div class="notice-wrap">
 	<div class="notice-box">
 		<h1>갤러리 글쓰기</h1>

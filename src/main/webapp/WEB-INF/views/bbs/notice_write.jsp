@@ -6,7 +6,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
-	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
+	<%@ include file="/WEB-INF/views/bbs/notice_submenu.jsp"%>
 
 <form method="POST" name="frm" action="<c:url value='/bbs/notice_write_action.do'/>" enctype="multipart/form-data"> 
 <c:if test="${mode =='modify'}">

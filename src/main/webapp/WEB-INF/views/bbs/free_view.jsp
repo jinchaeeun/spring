@@ -6,7 +6,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
-	<%@ include file="/WEB-INF/views/bbs/gallery_submenu.jsp"%>
+	<%@ include file="/WEB-INF/views/bbs/free_submenu.jsp"%>
 <div class="contents">
 
   <div class="notice-wrap">

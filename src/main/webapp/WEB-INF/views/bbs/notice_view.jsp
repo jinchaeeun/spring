@@ -6,7 +6,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
-	<%@ include file="/WEB-INF/views/bbs/submenu.jsp"%>
+	<%@ include file="/WEB-INF/views/bbs/notice_submenu.jsp"%>
 	<div class="contents">
 	
 	  <div class="notice-wrap">
@@ -21,12 +21,14 @@
 						<c:out value='${noticeVO.contents}'/>
 					</div>
 					
-					<div class="view-file">
-						<a href="<c:url value='/bbs/notice_downloadFile.do'/>?seq=${noticeVO.seq}"><i class="fa fa-download" aria-hidden="true"></i>${noticeVO.oriFilename}</a>
-						<!-- 
-						<a href=""><i class="fa fa-download" aria-hidden="true"></i> 첨부파일명.jpg</a>
-						 -->
-					</div>
+					<c:if test= "${not empty noticeVO.oriFilename}">
+						<div class="view-file">
+							<a href="<c:url value='/bbs/notice_downloadFile.do'/>?seq=${noticeVO.seq}"><i class="fa fa-download" aria-hidden="true"></i>${noticeVO.oriFilename}</a>
+							<!-- 
+							<a href=""><i class="fa fa-download" aria-hidden="true"></i> 첨부파일명.jpg</a>
+							 -->
+						</div>
+					</c:if>
 				</div>
 				<div class="table-btn">
 					<a href="<c:url value='/bbs/notice_modify.do'/>?seq=${noticeVO.seq}" class="mod">수정</a>
