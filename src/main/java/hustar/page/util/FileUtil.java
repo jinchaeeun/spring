@@ -218,6 +218,6 @@ public class FileUtil {
         
         InputStream in = new FileInputStream(path + "\\" + fileName);
         
-        IOUtils.copy(in, response.getOutputStream());
+        IOUtils.copy(in, response.getOutputStream());	//InputStream을 요청하는(응답을받아야하는) 객체에 출력
     }
 }
