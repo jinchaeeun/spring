@@ -20,11 +20,11 @@
 				<li>
 					<div>
 						<div class="thum">
-							<img src="../img/forest.jpg" alt="숲">
-							<a href="<c:url value='/bbs/gallery_view.do'/>">img</a>
+							<%-- <a href="<c:url value='/bbs/gallery_view.do'/>?seq=${galleryVO.seq}"><img src="../img/forest.jpg" alt="숲"></a> --%>
+							<a href="<c:url value='/bbs/gallery_view.do'/>?seq=${galleryVO.seq}"><img src="<c:url value='/bbs/gallery_image.do'/>?seq=${galleryVO.seq}"></a>
 						</div> 
 						<div class="info">
-							<h3><a href="<c:url value='/bbs/gallery_view.do'/>?seq=${galleryVO.seq}"><c:out value='${galleryVO.subject}'/></a></h3>
+							<h3><a href="<c:url value='/bbs/gallery_view.do'/>?seq=${galleryVO.seq}"></a></h3>
 							<p><c:out value='${galleryVO.contents}'/>
 							</p>
 							<i> <c:out value='${galleryVO.date}'/></i>

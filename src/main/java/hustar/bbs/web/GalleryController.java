@@ -170,4 +170,12 @@ public class GalleryController {
 		return new ModelAndView(jsonView);
 		
 	}
+	
+	@RequestMapping("/bbs/gallery_image.do")
+	public void gallery_image(GalleryVO searchVO, HttpServletResponse response) throws Exception{
+		
+		GalleryVO galleryVO = (GalleryVO) commonService.selectView(searchVO, null, null, "galleryDAO.selectGalleryView");
+		
+		FileUtil.displayImage(response, GALLERY_UPLOAD_PATH, galleryVO.getFilename());
+	}
 }

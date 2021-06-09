@@ -15,9 +15,12 @@
 				<div class="view-hd">
 					<span class="bbs-view-date"><c:out value='${galleryVO.date}'/></span>
 					<h2><c:out value='${galleryVO.subject}'/></h2>			
-					<span>글쓴이: <b>관리자</b></span>
+					<span>글쓴이: <b>${galleryVO.writer}</b></span>
 				</div>
 				<div class="view-cont">
+					<div class="view-thum">
+						<img src="<c:url value='/bbs/gallery_image.do'/>?seq=${galleryVO.seq}">
+					</div>
 					<p><c:out value='${galleryVO.contents}'/>
 					</p>
 				</div>
