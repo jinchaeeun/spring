@@ -8,12 +8,13 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
 	<%@ include file="/WEB-INF/views/bbs/free_submenu.jsp"%>
-
+	
+<form method="get" name="frm" action="<c:url value='/bbs/free_list.do'/>">
 <div class="notice-wrap">
 	<div class="notice-box">
 		<div class="search-box">
-			<input type="text">
-			<button>검색</button>
+			<input type="text" name="searchKeyword" value="${searchVO.searchKeyword}">
+			<button onclick="javascript:fn_requestList(1);">검색</button>
 		</div>
 
 		<ul class="table-hd">
@@ -24,38 +25,24 @@
 				<div class="date">등록일</div>
 			</li>
 		</ul>
-
-		<ul class="table-bd">
-			<li>
-				<div class="no">3</div>
-				<div class="title"><a href="<c:url value='/bbs/free_view.do'/>">크리넥스는 환경을 보호합니다.</a></div>
-				<div class="name">크리넥스</div>
-				<div class="date">2017.04.03</div>
-			</li>
-			<li>
-				<div class="no">2</div>
-				<div class="title"><a href=""<c:url value='/bbs/free_view.do'/>">숲은 마음의 고향입니다</a></div>
-				<div class="name">유한</div>
-				<div class="date">2017.04.03</div>
-			</li>
-			<li>
-				<div class="no">1</div>
-				<div class="title"><a href="<c:url value='/bbs/free_view.do'/>">숲은 마음의 고향입니다</a></div>
-				<div class="name">유한</div>
-				<div class="date">2017.04.03</div>
-			</li>
-		</ul>
+		
+		<!-- 반복 뿌림 부분 -->
+		<c:forEach var="freeVO" items="${freeVOList}" varStatus="status"> <!-- varStatus는 현재 몇개 값인지 -->
+			<ul class="table-bd">
+				<li>
+					<div class="no"><c:out value="${paginationInfo.totalRecordCount - ((paginationInfo.currentPageNo-1) * paginationInfo.recordCountPerPage + status.index)}"/></div>
+					<div class="subject"><a href="<c:url value='/bbs/free_view.do'/>?seq=${freeVO.seq}"><c:out value="${freeVO.subject}"/></a></div>
+					<div class="name"><c:out value="${freeVO.writer}"/></div>
+					<div class="date"><c:out value="${freeVO.date}"/></div>
+				</li>
+			</ul>
+		</c:forEach>
 	</div>
 
 	<div class="paging">
 		<ul>
-			<li><a href="#none">처음으로</a></li>
-			<li><a href="#none">이전</a></li>
-			<li class="on"><a href="#none">1</a></li>
-			<li><a href="#none">2</a></li>
-			<li><a href="#none">3</a></li>
-			<li><a href="#none">다음</a></li>
-			<li><a href="#none">마지막</a></li>
+			<ui:pagination paginationInfo="${paginationInfo}" type="myImage" jsFunction="fn_requestList"/>
+			<input type="hidden" name="pageIndex" value="<c:url value='${searchVO.pageIndex}'/>"/>
 		</ul>
 	</div>
 
@@ -63,5 +50,14 @@
 		<a href="<c:url value='/bbs/free_write.do'/>">글쓰기</a>
 	</div>
 </div>
+</form>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	
+<script>
+	function fn_requestList(pageNo){
+		console.log(pageNo);
+		document.frm.pageIndex.value = pageNo;
+		document.frm.submit();
+	}
+</script>

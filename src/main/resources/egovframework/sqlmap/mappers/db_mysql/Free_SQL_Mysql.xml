@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeDAO">
+	<!-- 공지사항 목록 -->
+	<select id="freeDAO.selectFreeList" parameterType="freeVO" resultType="freeVO">
+	    <![CDATA[
+	    SELECT * 
+	    FROM FREE
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%') OR WRITER LIKE CONCAT('%', #{searchKeyword},'%')
+	    ORDER BY DATE DESC, SUBJECT DESC
+	    LIMIT ${recordCountPerPage} OFFSET ${firstIndex}
+	    ]]>
+	</select>
+	<!-- //공지사항 목록 -->
+	
+	<!-- 공지사항 목록 갯수-->
+	<select id="freeDAO.selectFreeListCnt" parameterType="freeVO" resultType="int">
+	    <![CDATA[
+	    SELECT COUNT(*) 
+	    FROM FREE
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%') OR WRITER LIKE CONCAT('%', #{searchKeyword},'%')
+	    ]]>
+	</select>
+	<!-- //공지사항 목록 갯수-->
+	
+	<!-- 공지사항 상세-->
+	<select id="freeDAO.selectFreeView" parameterType="freeVO" resultType="freeVO">
+	    <!-- 특수문자 치환, 안해주면 찾기 힘들어서 -->
+	    <![CDATA[
+	    SELECT * FROM FREE
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</select>
+	<!-- //공지사항 상세-->
+	
+	<!-- 공지사항 글쓰기-->
+	<insert id="freeDAO.insertFree" parameterType="freeVO">
+	    <![CDATA[
+	    INSERT INTO FREE
+	    (SUBJECT, WRITER, DATE, CONTENTS, FILENAME, ORIFILENAME)
+	    VALUES
+	    (#{subject}, #{writer}, NOW(), #{contents}, #{filename}, #{oriFilename}) 
+	    ]]>
+	</insert>
+	<!-- //공지사항 글쓰기-->
+	
+	<!-- 공지사항 글 수정하기 -->
+	<update id="freeDAO.updateFree" parameterType="freeVO">
+	    <![CDATA[ UPDATE FREE ]]>
+	    <trim prefix="SET" suffixOverrides=","> <!-- 끝날 때 자동으로 , 제거 처리 -->
+		    <if test="subject != null"> <![CDATA[SUBJECT=#{subject},]]></if> 
+		    <if test="contents != null"> <![CDATA[CONTENTS=#{contents},]]></if>
+		    <if test="filename != null"> <![CDATA[FILENAME = #{filename},]]></if>
+		    <if test="oriFilename != null"> <![CDATA[ORIFILENAME = #{oriFilename},]]></if>
+	    </trim>
+	    <![CDATA[ WHERE SEQ = #{seq} ]]>
+	</update>
+	<!-- //공지사항 글 수정하기 -->
+	
+	<!-- 공지사항 글 삭제하기 -->
+	<delete id="freeDAO.deleteFree" parameterType="freeVO">
+	    <![CDATA[
+	    DELETE FROM FREE
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</delete>
+	<!-- //공지사항 글 삭제하기 -->
+	
+</mapper>
