@@ -16,107 +16,22 @@
 	</div>
 	<div class="gallery-box">
 		<ul>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
+			<c:forEach var="galleryVO" items="${galleryVOList}" varStatus="status">
+				<li>
+					<div>
+						<div class="thum">
+							<img src="../img/forest.jpg" alt="숲">
+							<a href="<c:url value='/bbs/gallery_view.do'/>">img</a>
+						</div> 
+						<div class="info">
+							<h3><a href="<c:url value='/bbs/gallery_view.do'/>?seq=${galleryVO.seq}"><c:out value='${galleryVO.subject}'/></a></h3>
+							<p><c:out value='${galleryVO.contents}'/>
+							</p>
+							<i> <c:out value='${galleryVO.date}'/></i>
+						</div>
 					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div>
-					<div class="thum"><img src="../img/forest.jpg" alt="숲"></div>
-					<div class="info">
-						<h3><a href="<c:url value='/bbs/gallery_view.do'/>">숲은 마음의 고향입니다.</a></h3>
-						<p>산림청(청장 박종호)은 산림보호구역에서 ‘치유의 숲’ 조성이 가능하도록 규제를 완화한다고 20일 밝혔다. 산림보호구역 행위제한 예외사유에 치유의 숲 조성을 추가한 「산림보호법 시행령」일부개정안이 현재 입법예고 중이며, 오는 12월 중 시행될 예정이다.
-						</p>
-						<i> 2020-03-05</i>
-					</div>
-				</div>
-			</li>
-
+				</li>
+			</c:forEach>
 		</ul>
 
 	</div>

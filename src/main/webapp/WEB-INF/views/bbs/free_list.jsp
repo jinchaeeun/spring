@@ -28,19 +28,19 @@
 		<ul class="table-bd">
 			<li>
 				<div class="no">3</div>
-				<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>">크리넥스는 환경을 보호합니다.</a></div>
+				<div class="title"><a href="<c:url value='/bbs/free_view.do'/>">크리넥스는 환경을 보호합니다.</a></div>
 				<div class="name">크리넥스</div>
 				<div class="date">2017.04.03</div>
 			</li>
 			<li>
 				<div class="no">2</div>
-				<div class="title"><a href=""<c:url value='/bbs/notice_view.do'/>">숲은 마음의 고향입니다</a></div>
+				<div class="title"><a href=""<c:url value='/bbs/free_view.do'/>">숲은 마음의 고향입니다</a></div>
 				<div class="name">유한</div>
 				<div class="date">2017.04.03</div>
 			</li>
 			<li>
 				<div class="no">1</div>
-				<div class="title"><a href="<c:url value='/bbs/notice_view.do'/>">숲은 마음의 고향입니다</a></div>
+				<div class="title"><a href="<c:url value='/bbs/free_view.do'/>">숲은 마음의 고향입니다</a></div>
 				<div class="name">유한</div>
 				<div class="date">2017.04.03</div>
 			</li>

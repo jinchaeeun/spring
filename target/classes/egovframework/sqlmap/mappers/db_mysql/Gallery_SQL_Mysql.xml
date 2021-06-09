@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="galleryDAO">
+	<!-- 갤러리 목록 -->
+	<select id="galleryDAO.selectGalleryList" parameterType="galleryVO" resultType="galleryVO">
+	    <![CDATA[
+	    SELECT * 
+	    FROM GALLERY;
+	    ]]>
+	</select>
+	<!-- //갤러리 목록 -->
+	
+	<!-- 갤러리 상세-->
+	<select id="galleryDAO.selectGalleryView" parameterType="galleryVO" resultType="galleryVO">
+	    <!-- 특수문자 치환, 안해주면 찾기 힘들어서 -->
+	    <![CDATA[
+	    SELECT * FROM GALLERY
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</select>
+	<!-- //갤러리 상세-->
+	
+	<!-- 갤러리 글 수정하기 -->
+	<update id="galleryDAO.updateGallery" parameterType="galleryVO">
+	    <![CDATA[ UPDATE GALLERY ]]>
+	    <trim prefix="SET" suffixOverrides=","> <!-- 끝날 때 자동으로 , 제거 처리 -->
+		    <if test="subject != null"> <![CDATA[SUBJECT=#{subject},]]></if> 
+		    <if test="contents != null"> <![CDATA[CONTENTS=#{contents},]]></if>
+		    <if test="filename != null"> <![CDATA[FILENAME = #{filename},]]></if>
+		    <if test="oriFilename != null"> <![CDATA[ORIFILENAME = #{oriFilename},]]></if>
+	    </trim>
+	    <![CDATA[ WHERE SEQ = #{seq} ]]>
+	</update>
+	<!-- //갤러리 글 수정하기 -->
+	
+	<!-- 갤러리 목록 갯수-->
+	<select id="galleryDAO.selectGalleryListCnt" parameterType="galleryVO" resultType="int">
+	    <![CDATA[
+	    SELECT COUNT(*) 
+	    FROM GALLERY
+	    WHERE SUBJECT LIKE CONCAT('%', #{searchKeyword},'%') OR WRITER LIKE CONCAT('%', #{searchKeyword},'%')
+	    ]]>
+	</select>
+	<!-- //갤러리 목록 갯수-->
+	
+	<!-- 갤러리 글쓰기-->
+	<insert id="galleryDAO.insertGallery" parameterType="galleryVO">
+	    <![CDATA[
+	    INSERT INTO GALLERY
+	    (SUBJECT, WRITER, DATE, CONTENTS, FILENAME, ORIFILENAME)
+	    VALUES
+	    (#{subject}, #{writer}, NOW(), #{contents}, #{filename}, #{oriFilename}) 
+	    ]]>
+	</insert>
+	<!-- //갤러리 글쓰기-->
+	
+
+	
+	<!-- 갤러리 글 삭제하기 -->
+	<delete id="galleryDAO.deleteGallery" parameterType="galleryVO">
+	    <![CDATA[
+	    DELETE FROM GALLERY
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</delete>
+	<!-- //갤러리 글 삭제하기 -->
+	
+</mapper>

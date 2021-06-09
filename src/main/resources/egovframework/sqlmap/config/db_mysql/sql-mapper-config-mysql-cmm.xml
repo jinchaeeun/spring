@@ -7,12 +7,14 @@
     	<typeAlias alias="testVO" type="egovframework.com.test.service.TestVO" />
     	<typeAlias alias="memberVO" type = "hustar.member.service.MemberVO" />
     	<typeAlias alias="noticeVO" type = "hustar.bbs.service.NoticeVO" />
+    	<typeAlias alias="galleryVO" type = "hustar.bbs.service.GalleryVO" />
     </typeAliases>
  
 	<mappers>
        <mapper resource="egovframework/sqlmap/mappers/db_mysql/Test_SQL_Mysql.xml" />
        <mapper resource="egovframework/sqlmap/mappers/db_mysql/Member_SQL_Mysql.xml" />
-       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Notice_SQL_Mysql.xml" />   
+       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Notice_SQL_Mysql.xml" />
+       <mapper resource="egovframework/sqlmap/mappers/db_mysql/Gallery_SQL_Mysql.xml" /> 
     </mappers> 
 
 </configuration>
