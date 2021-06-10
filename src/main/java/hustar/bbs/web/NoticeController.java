@@ -144,10 +144,19 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/bbs/notice_delete.do")
-	public String notice_delete(NoticeVO noticeVO) throws Exception{
+	public String notice_delete(NoticeVO noticeVO, HttpSession session, RedirectAttributes redirectAttributes) throws Exception{
 		System.out.println("seq = " + noticeVO.getSeq());
 		
-		commonService.delete(noticeVO, null, null, "noticeDAO.deleteNotice");
+		//현재 로그인한 사람 정보 - 세션
+		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
+		
+		//로그아웃 상태에서 글쓰기 삭제 버튼 누르면
+		if(loginVO == null) {
+			redirectAttributes.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/member/login.do";
+		}else {
+			commonService.delete(noticeVO, null, null, "noticeDAO.deleteNotice");
+		}
 		return "redirect:/bbs/notice_list.do";
 	}
 	

@@ -79,6 +79,7 @@
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	<script>
+	
 	function confirmDeleteFile(){
 		if(confirm('삭제하시겠습니까?') == true){
 			//ajax로 처리하기

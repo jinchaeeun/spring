@@ -125,10 +125,28 @@ public class GalleryController {
 	}	
 	
 	@RequestMapping("/bbs/gallery_delete.do")
-	public String gallery_delete(GalleryVO galleryVO) throws Exception{
-		System.out.println("seq = " + galleryVO.getSeq());
+	public String gallery_delete(GalleryVO searchVO, HttpSession session, RedirectAttributes redirectAttributes) throws Exception{
+		//System.out.println("seq = " + searchVO.getSeq());
 		
-		commonService.delete(galleryVO, null, null, "galleryDAO.deleteGallery");
+		//현재 로그인한 사람 정보 - 세션
+		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
+		
+		//로그아웃 상태에서 글쓰기 삭제 버튼 누르면
+		if(loginVO == null) {
+			redirectAttributes.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/member/login.do";
+		}else {
+			System.out.println("gallery_delete");
+			//파일 삭제
+			GalleryVO fileVO = (GalleryVO) commonService.selectView(searchVO, null, null, "galleryDAO.selectGalleryView");
+			String filePath = GALLERY_UPLOAD_PATH +"/" + fileVO.getFilename(); 
+			FileUtil.deleteFile(filePath);
+			System.out.println("filePath => " + filePath);
+			//삭제
+			commonService.delete(searchVO, null, null, "galleryDAO.deleteGallery");
+			
+		}
+		
 		return "redirect:/bbs/gallery_list.do";
 	}
 	
@@ -137,9 +155,11 @@ public class GalleryController {
 			GalleryVO searchVO,
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
+		
 		GalleryVO galleryVO = (GalleryVO) commonService.selectView(searchVO, null, null, "galleryDAO.selectGalleryView");
 		//file 저장여부
 		String filename = galleryVO.getFilename();
+		System.out.println("filename => " +filename);
 		if(filename == null) {
 			return;
 		}
