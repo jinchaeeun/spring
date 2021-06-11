@@ -17,9 +17,14 @@
 	<select id="bookingDAO.selectBookingList" parameterType="bookingVO" resultType="bookingVO">
 	    <![CDATA[
 	    SELECT * FROM BOOKING
+	    WHERE 1=1
 	    ]]>
 	    <if test="auth != 'adm'">
-		    WHERE ID = #{id}
+		    AND WHERE ID = #{id}
+	    </if>
+	    <if test="searchKeyword != ''">
+	        AND (LOCATION LIKE CONCAT('%', #{searchKeyword}, '%')
+	        OR NAME LIKE CONCAT('%', #{searchKeyword}, '%') )	        
 	    </if>
 	    <![CDATA[
 	    ORDER BY DATE DESC

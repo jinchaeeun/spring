@@ -6,12 +6,14 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
+
+<form method="get" name="frm" action="<c:url value='/booking/mypage.do'/>">
 <div class="notice-wrap">
 	<div class="notice-box mypage">
 		<h2>예약 확인</h2>
 		<div class="search-box">
-			<input type="text">
-			<button>검색</button>
+			<input type="text" name="searchKeyword" value="${searchVO.searchKeyword}">
+			<button onclick="javascript:document.frm.submit();">검색</button>
 		</div>
 		<div class="table-list mypage-list">
 			<ul class="table-hd">
@@ -78,13 +80,22 @@
 	</div>
 
 </div>
+</form>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	
 	<script>
+	
+	var statusText = new Map([
+		['1', '승인'],
+		['2', '대기'],
+		['3', '취소'],
+		['4', '반려']
+	]);
 	function mamage(seq, status){
-		if(confirm('상태를 바꾸시겠습니까?') == true){
+		
+		if(confirm(statusText.get(status) + ' 상태로 변경하시겠습니까?') == true){
 			$.ajax({
 				type:'POST',
 				url:'<c:url value="/booking/modify_status.do"/>',
@@ -94,7 +105,7 @@
 					if(data.success == "true"){
 						location.reload();
 					}else{
-						alert('상태변경을 실패했습니다.');
+						alert('상태 변경을 실패했습니다.');
 					}
 				},
 				error: function(jqXHR, textStatus, errorThrown){
