@@ -52,11 +52,11 @@
 				<li>
 					<div class="booking-box">
 						<div class="thum">
-							<img src="../img/forest.jpg" alt="">	
+							<a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인1"><img src="../img/forest.jpg" alt=""></a>	
 						</div>
 
 						<div class="info">
-							<h3><a href="<c:url value='/booking/view.do'/>">숲으로 가자 캠페인</a></h3>
+							<h3><a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인1">숲으로 가자 캠페인1</a></h3>
 							<p>‘숲으로 가자 캠페인’ 은 숲교육의 긍정적인 효과를 적용해 학교폭력, 인터넷 중독, 왕따 등 사회문제를 해결하기 위한 범국민 프로젝트입니다.
 							학교폭력, 학업스트레스 등으로 인해 정서적으로 불안한 우리 아이들, 숲교육을 통해 자연과 친해지고 심리적 안정을 얻을 수 있습니다. 숲을 가까이하고 다양한 활동을 하는 것은 아이들이 건강하고 행복한 인격체로 성장하는 데 중요합니다. 산림청의 숲으로가자 캠페인은 다각적 차원에서 산림을 교육에 접목시키고 있습니다.</p>
 							<i>2021-05-03</i>
@@ -66,11 +66,11 @@
 				<li>
 					<div class="booking-box">
 						<div class="thum">
-							<img src="../img/forest.jpg" alt="">	
+							<a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인3"><img src="../img/forest.jpg" alt=""></a>	
 						</div>
 
 						<div class="info">
-							<h3><a href="<c:url value='/booking/view.do'/>">숲으로 가자 캠페인</a></h3>
+							<h3><a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인2">숲으로 가자 캠페인2</a></h3>
 							<p>‘숲으로 가자 캠페인’ 은 숲교육의 긍정적인 효과를 적용해 학교폭력, 인터넷 중독, 왕따 등 사회문제를 해결하기 위한 범국민 프로젝트입니다.
 							학교폭력, 학업스트레스 등으로 인해 정서적으로 불안한 우리 아이들, 숲교육을 통해 자연과 친해지고 심리적 안정을 얻을 수 있습니다. 숲을 가까이하고 다양한 활동을 하는 것은 아이들이 건강하고 행복한 인격체로 성장하는 데 중요합니다. 산림청의 숲으로가자 캠페인은 다각적 차원에서 산림을 교육에 접목시키고 있습니다.</p>
 							<i>2021-05-03</i>
@@ -80,11 +80,11 @@
 				<li>
 					<div class="booking-box">
 						<div class="thum">
-							<img src="../img/forest.jpg" alt="">	
+							<a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인3"><img src="../img/forest.jpg" alt=""></a>	
 						</div>
 
 						<div class="info">
-							<h3><a href="<c:url value='/booking/view.do'/>">숲으로 가자 캠페인</a></h3>
+							<h3><a href="<c:url value='/booking/view.do'/>?location=숲으로 가자 캠페인3">숲으로 가자 캠페인3</a></h3>
 							<p>‘숲으로 가자 캠페인’ 은 숲교육의 긍정적인 효과를 적용해 학교폭력, 인터넷 중독, 왕따 등 사회문제를 해결하기 위한 범국민 프로젝트입니다.
 							학교폭력, 학업스트레스 등으로 인해 정서적으로 불안한 우리 아이들, 숲교육을 통해 자연과 친해지고 심리적 안정을 얻을 수 있습니다. 숲을 가까이하고 다양한 활동을 하는 것은 아이들이 건강하고 행복한 인격체로 성장하는 데 중요합니다. 산림청의 숲으로가자 캠페인은 다각적 차원에서 산림을 교육에 접목시키고 있습니다.</p>
 							<i>2021-05-03</i>

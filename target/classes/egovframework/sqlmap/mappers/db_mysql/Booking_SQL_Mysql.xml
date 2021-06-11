@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bookingDAO">
+
+	<!-- 예약 글쓰기-->
+	<insert id="bookingDAO.insertBooking" parameterType="bookingVO">
+	    <![CDATA[
+	    INSERT INTO BOOKING
+	    (ID, NAME, BOOKING_DATE, DATE, STATUS, LOCATION)
+	    VALUES
+	    (#{id}, #{name}, #{booking_date}, NOW(), '2', #{location}) 
+	    ]]>
+	</insert>
+	<!-- //예약 글쓰기-->
+	
+</mapper>

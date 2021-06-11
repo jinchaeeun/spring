@@ -8,7 +8,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/menu.jsp"%>
 
-	<style>
+<style>
 .booking-view {
 	max-width: 1200px;
 	overflow: hidden;
@@ -141,9 +141,11 @@
 	min-height: 200px;
 }
 </style>
+<form method="post" name="frm" action="<c:url value='/booking/booking.do'/>">
+<input type="hidden" name="location" value="<c:out value='${location}'/>">
 	<div class="booking-view">
 		<div class="booking-box">
-			<h2>장소예약 상세보기</h2>
+			<h2><c:out value='${location}'/> 상세보기</h2>
 			<div>
 				<div class="calendar-wrap">
 					<div class="view-photo">
@@ -210,48 +212,48 @@
 							<li class="off"><a href="#none"><span>28</span></a></li>
 							<li class="off"><a href="#none"><span>29</span></a></li>
 							<li class="off"><a href="#none"><span>30</span></a></li>
-							<li class="off"><a href="#none"><span>1</span></a></li>
+							<li class="on"><a href="#none"><span>1</span></a></li>
 						</ul>
 						<ul>
 							<!-- if문 -->
-							<li class="today"><a href="#none"><span>2</span></a></li>
-							<li><a href="#none"><span>3</span></a></li>
-							<li><a href="#none"><span>4</span></a></li>
-							<li class="selected"><a href="#none"><span>5</span></a></li>
-							<li><a href="#none"><span>6</span></a></li>
-							<li><a href="#none"><span>7</span></a></li>
-							<li><a href="#none"><span>8</span></a></li>
+							<li class="on today"><a href="#none"><span>2</span></a></li>
+							<li class="on"><a href="#none"><span>3</span></a></li>
+							<li class="on"><a href="#none"><span>4</span></a></li>
+							<li class="on selected"><a href="#none"><span>5</span></a></li>
+							<li class="on"><a href="#none"><span>6</span></a></li>
+							<li class="on"><a href="#none"><span>7</span></a></li>
+							<li class="on"><a href="#none"><span>8</span></a></li>
 						</ul>
 						<ul>
-							<li><a href="#none"><span>9</span></a></li>
-							<li><a href="#none"><span>10</span></a></li>
-							<li><a href="#none"><span>11</span></a></li>
-							<li><a href="#none"><span>12</span></a></li>
-							<li><a href="#none"><span>13</span></a></li>
-							<li><a href="#none"><span>14</span></a></li>
-							<li><a href="#none"><span>15</span></a></li>
+							<li class="on"><a href="#none"><span>9</span></a></li>
+							<li class="on"><a href="#none"><span>10</span></a></li>
+							<li class="on"><a href="#none"><span>11</span></a></li>
+							<li class="on"><a href="#none"><span>12</span></a></li>
+							<li class="on"><a href="#none"><span>13</span></a></li>
+							<li class="on"><a href="#none"><span>14</span></a></li>
+							<li class="on"><a href="#none"><span>15</span></a></li>
 						</ul>
 						<ul>
-							<li><a href="#none"><span>16</span></a></li>
-							<li><a href="#none"><span>17</span></a></li>
-							<li><a href="#none"><span>18</span></a></li>
-							<li><a href="#none"><span>19</span></a></li>
-							<li><a href="#none"><span>20</span></a></li>
-							<li><a href="#none"><span>21</span></a></li>
-							<li><a href="#none"><span>22</span></a></li>
+							<li class="on"><a href="#none"><span>16</span></a></li>
+							<li class="on"><a href="#none"><span>17</span></a></li>
+							<li class="on"><a href="#none"><span>18</span></a></li>
+							<li class="on"><a href="#none"><span>19</span></a></li>
+							<li class="on"><a href="#none"><span>20</span></a></li>
+							<li class="on"><a href="#none"><span>21</span></a></li>
+							<li class="on"><a href="#none"><span>22</span></a></li>
 						</ul>
 						<ul>
-							<li><a href="#none"><span>23</span></a></li>
-							<li><a href="#none"><span>24</span></a></li>
-							<li><a href="#none"><span>25</span></a></li>
-							<li><a href="#none"><span>26</span></a></li>
-							<li><a href="#none"><span>27</span></a></li>
-							<li><a href="#none"><span>28</span></a></li>
-							<li><a href="#none"><span>29</span></a></li>
+							<li class="on"><a href="#none"><span>23</span></a></li>
+							<li class="on"><a href="#none"><span>24</span></a></li>
+							<li class="on"><a href="#none"><span>25</span></a></li>
+							<li class="on"><a href="#none"><span>26</span></a></li>
+							<li class="on"><a href="#none"><span>27</span></a></li>
+							<li class="on"><a href="#none"><span>28</span></a></li>
+							<li class="on"><a href="#none"><span>29</span></a></li>
 						</ul>
 						<ul>
-							<li><a href="#none"><span>30</span></a></li>
-							<li><a href="#none"><span>31</span></a></li>
+							<li class="on"><a href="#none"><span>30</span></a></li>
+							<li class="on"><a href="#none"><span>31</span></a></li>
 							<li class="off"><a href="#none"><span>1</span></a></li>
 							<li class="off"><a href="#none"><span>2</span></a></li>
 							<li class="off"><a href="#none"><span>3</span></a></li>
@@ -265,13 +267,31 @@
 		</div>
 
 		<div class="view-btn">
-			<a href="">이전</a> <a href="">예약하기</a>
+			<a href="">이전</a> 
+			<input type="text" name="booking_date" size="8" id="booking_date"> <!-- 예약 날짜 -->
+			<a href="#" onclick="document.frm.submit();">예약하기</a>
 		</div>
 
 		<div class="view-detail">
 			<p>상세 설명입니다.</p>
 		</div>
 	</div>
-
+</form>
 	<!-- 하단 헤더 불러오기 -->
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	
+	<script>
+	$(".calendar-box .on").click(function() {
+		//console.log("select = " + $(this).text());
+		
+		$(".calendar-box .on").removeClass("selected");
+		$(this).addClass("selected");
+		
+		var year = "2021";
+		var month = "05";
+		var day = $(this).text() < 10 ? "0" + $(this).text() : $(this).text(); //날짜가 한자리 수면 두 글자로 만들어 줌
+		console.log(year +"-"+ month +"-"+ day);
+		
+		$("#booking_date").val(year +"-"+ month +"-"+ day);
+	});
+	</script>
