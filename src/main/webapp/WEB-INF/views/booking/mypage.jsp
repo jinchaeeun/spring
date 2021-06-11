@@ -13,7 +13,7 @@
 		<h2>예약 확인</h2>
 		<div class="search-box">
 			<input type="text" name="searchKeyword" value="${searchVO.searchKeyword}">
-			<button onclick="javascript:document.frm.submit();">검색</button>
+			<button onclick="javascript:fn_requestList(1);">검색</button>
 		</div>
 		<div class="table-list mypage-list">
 			<ul class="table-hd">
@@ -69,13 +69,8 @@
 
 	<div class="paging">
 		<ul>
-			<li><a href="#none">처음으로</a></li>
-			<li><a href="#none">이전</a></li>
-			<li class="on"><a href="#none">1</a></li>
-			<li><a href="#none">2</a></li>
-			<li><a href="#none">3</a></li>
-			<li><a href="#none">다음</a></li>
-			<li><a href="#none">마지막</a></li>
+			<ui:pagination paginationInfo="${paginationInfo}" type="myImage" jsFunction="fn_requestList"/>
+			<input type="hidden" name="pageIndex" value="<c:url value='${searchVO.pageIndex}'/>"/>
 		</ul>
 	</div>
 
@@ -86,7 +81,6 @@
 	
 	
 	<script>
-	
 	var statusText = new Map([
 		['1', '승인'],
 		['2', '대기'],
@@ -116,4 +110,10 @@
 		
 	}
 	
+
+	function fn_requestList(pageNo){
+		console.log(pageNo);
+		document.frm.pageIndex.value = pageNo;
+		document.frm.submit();
+	}	
 	</script>

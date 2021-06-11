@@ -38,6 +38,23 @@
             <mvc:mapping path="/adm/*.do"/>
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
+        <!-- 추가 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/booking/*.do"/>
+			<mvc:mapping path="/bbs/notice_*.do"/>
+			<mvc:mapping path="/bbs/gallery_*.do"/>
+			
+			<mvc:exclude-mapping path="/booking/list.do"/>
+			<mvc:exclude-mapping path="/booking/view.do"/>
+			<mvc:exclude-mapping path="/bbs/notice_list.do"/>
+			<mvc:exclude-mapping path="/bbs/notice_view.do"/>
+			<mvc:exclude-mapping path="/bbs/gallery_list.do"/>
+			<mvc:exclude-mapping path="/bbs/gallery_view.do"/>
+			<mvc:exclude-mapping path="/bbs/gallery_image.do"/>
+ 
+    		<bean class="egovframework.com.cmm.interceptor.MyAuthenticInterceptor" />
+        </mvc:interceptor>
+        
     </mvc:interceptors>
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->

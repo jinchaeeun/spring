@@ -79,10 +79,11 @@ public class NoticeController {
 		
 		//로그아웃 상태에서 글쓰기 저장 버튼 누르면
 		MemberVO loginVO = (MemberVO) session.getAttribute("login");  //로그인할 때 login으로 했음
-		if(loginVO == null) {
-			redirectAttributes.addFlashAttribute("msg", "로그인이 필요합니다.");
-			return "redirect:/member/login.do";
-		}
+		
+		/*
+		 * if(loginVO == null) { redirectAttributes.addFlashAttribute("msg",
+		 * "로그인이 필요합니다."); return "redirect:/member/login.do"; }
+		 */
 		
 		return "/bbs/notice_write"; //뷰 반환
 	}

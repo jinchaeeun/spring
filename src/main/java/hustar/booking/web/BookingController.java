@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import egovframework.com.cmm.service.CommonService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import hustar.booking.service.BookingVO;
 import hustar.member.service.MemberVO;
 
@@ -62,20 +63,38 @@ public class BookingController {
          BookingVO searchVO,
          Model model, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
       
-	  MemberVO loginVO = (MemberVO) session.getAttribute("login");
-	  
-	  if(loginVO == null) {
-			redirectAttributes.addFlashAttribute("msg", "로그인이필요합니다.");
-			return "redirect:/member/login.do";
-		}
-	  
-	  searchVO.setId(loginVO.getId());
-	  searchVO.setAuth(loginVO.getAuth());
-	  
-      List<BookingVO> bookingVOList = (List<BookingVO>) commonService.selectList(searchVO, null, null,"bookingDAO.selectBookingList");
-      
-      model.addAttribute("bookingVOList", bookingVOList);
-      return "/booking/mypage";
+	   //페이징
+	   PaginationInfo paginationInfo = new PaginationInfo();
+	   paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+	   paginationInfo.setRecordCountPerPage(searchVO.getRecordCountPerPage()); 	//한 페이지 당 몇개 표시
+	   paginationInfo.setPageSize(searchVO.getPageSize()); 					  	//아래 페이지 번호 몇개 줄 것인가
+
+	   searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+	   searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
+	   searchVO.setPageSize(paginationInfo.getPageSize());
+
+
+	   //로그인
+	   MemberVO loginVO = (MemberVO) session.getAttribute("login");
+
+	   if(loginVO == null) {
+		   redirectAttributes.addFlashAttribute("msg", "로그인이필요합니다.");
+		   return "redirect:/member/login.do";
+	   }
+
+	   searchVO.setId(loginVO.getId());
+	   searchVO.setAuth(loginVO.getAuth());
+
+	   int recordCount = commonService.selectListTotCnt(searchVO, null, null, "bookingDAO.selectNoticeListCnt");
+	   paginationInfo.setTotalRecordCount(recordCount);
+	   
+	   List<BookingVO> bookingVOList = (List<BookingVO>) commonService.selectList(searchVO, null, null,"bookingDAO.selectBookingList");
+
+	   model.addAttribute("bookingVOList", bookingVOList);
+	   model.addAttribute("paginationInfo", paginationInfo); //페이징 
+	   model.addAttribute("searchVO", searchVO);
+
+	   return "/booking/mypage";
    }
 	
    @RequestMapping("/booking/modify_status.do")

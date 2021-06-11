@@ -32,6 +32,25 @@
 	</select>
 	<!-- //예약 확인 -->
 	
+	<!-- 예약 확인 목록 갯수-->
+	<select id="bookingDAO.selectNoticeListCnt" parameterType="bookingVO" resultType="int">
+	    <![CDATA[
+	    SELECT COUNT(*) FROM BOOKING
+	    WHERE 1=1
+	    ]]>
+	    <if test="auth != 'adm'">
+		    AND WHERE ID = #{id}
+	    </if>
+	    <if test="searchKeyword != ''">
+	        AND (LOCATION LIKE CONCAT('%', #{searchKeyword}, '%')
+	        OR NAME LIKE CONCAT('%', #{searchKeyword}, '%') )	        
+	    </if>
+	    <![CDATA[
+	    ORDER BY DATE DESC
+    	]]>
+	</select>
+	<!-- //예약 확인 목록 갯수-->
+	
 	<update id="bookingDAO.updateBooking" parameterType="bookingVO">
 	    <![CDATA[
 	    UPDATE BOOKING SET
