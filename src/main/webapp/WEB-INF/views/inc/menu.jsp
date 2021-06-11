@@ -18,7 +18,7 @@
 		<div class="tnb">
 			<ul class="tnb">
 				<!--tnb-->
-				<li><a href="#"><c:out value="${session.name}"/></a></li>
+				<li><a href="#"><c:out value="${session.name}"/><c:out value='${session.auth == "adm" ? "(관리자)" : "" }'/></a></li>
 				<!-- 로그인이 된 경우 -->
 				<c:if test="${not empty session}">
 					<li><a href="<c:url value='/member/actionLogout.do'/>">로그아웃</a></li>

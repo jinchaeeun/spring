@@ -147,6 +147,7 @@ public class MemberController extends ComDefaultVO{
 				HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 				request.getSession().setAttribute("login", loginVO);
 				
+				System.out.println("auth = " + loginVO.getAuth());
 				model.addAttribute("login", true);
 			} else {
 				model.addAttribute("login", false);

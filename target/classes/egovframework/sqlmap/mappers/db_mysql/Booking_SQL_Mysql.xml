@@ -13,4 +13,25 @@
 	</insert>
 	<!-- //예약 글쓰기-->
 	
+	<!-- 예약 확인 -->
+	<select id="bookingDAO.selectBookingList" parameterType="bookingVO" resultType="bookingVO">
+	    <![CDATA[
+	    SELECT * FROM BOOKING
+	    ]]>
+	    <if test="auth != 'adm'">
+		    WHERE ID = #{id}
+	    </if>
+	    <![CDATA[
+	    ORDER BY DATE DESC
+    	]]>
+	</select>
+	<!-- //예약 확인 -->
+	
+	<update id="bookingDAO.updateBooking" parameterType="bookingVO">
+	    <![CDATA[
+	    UPDATE BOOKING SET
+	    STATUS = #{status}
+	    WHERE SEQ = #{seq}
+	    ]]>
+	</update>
 </mapper>

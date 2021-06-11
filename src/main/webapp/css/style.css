@@ -284,11 +284,12 @@ img {
 	.mypage > h2{text-align: center; padding: 20px 0; font-size:30px;}
 
 	.mypage-list ul li > div.no{width: 10%;}
-	.mypage-list ul li > div.title{width: 50%;}
-	.mypage-list ul li > div.state{width: 10%;}
-	.mypage-list ul li > div.name{width: 15%;}
+	.mypage-list ul li > div.title{width: 25%;}
+	.mypage-list ul li > div.booking_date{width: 20%;}
+	.mypage-list ul li > div.state{width: 5%;}
+	.mypage-list ul li > div.name{width: 5%;}
 	.mypage-list ul li > div.date{width: 15%;}
-
+	.mypage-list ul li > div.admin{width: 20%;}
 
 	.color01{color: #15c775;}
 	.color02{color: #000;}

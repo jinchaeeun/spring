@@ -10,6 +10,7 @@ public class BookingVO extends ComDefaultVO{
 	public String date;
 	public String status;
 	public String location;
+	public String auth;
 	
 	//Alt + Shift + S
 	public int getSeq() {
@@ -54,6 +55,12 @@ public class BookingVO extends ComDefaultVO{
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 	
 	

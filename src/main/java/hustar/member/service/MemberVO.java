@@ -7,6 +7,7 @@ public class MemberVO  extends ComDefaultVO{
 	public String password;
 	public String name;
 	public String phone;
+	public String auth;
 	
 	public void setId(String id) {
 		this.id = id;
@@ -39,6 +40,15 @@ public class MemberVO  extends ComDefaultVO{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+	
 	
 }
 
